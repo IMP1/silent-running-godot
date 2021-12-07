@@ -1,0 +1,19 @@
+# Silent Running
+
+Godot multiplayer game
+
+  - [X] Add a submarine
+  - [X] Make a super-basic level
+  - [X] Make sure networking is working
+  - [X] Move around
+  - [X] Sync up movement and positions
+  - [X] Shoot
+  - [ ] Can die from being shot
+  - [ ] Win + Loss condition
+  - [ ] Can die from hitting walls
+  - [ ] Make everything invisible
+  - [ ] Add passive sonar
+  - [ ] Add active sonar
+
+
+
