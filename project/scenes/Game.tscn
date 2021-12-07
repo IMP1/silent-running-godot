@@ -1,60 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-
-[sub_resource type="Shader" id=2]
-code = "shader_type canvas_item;
-
-uniform vec4 ping_colour : hint_color = vec4(1.0) ;
-
-const float EMPTY = 32.0 / 255.0;
-
-void fragment() {
-	float solid = 0.0;
-	float edge = 0.0;
-	vec4 background = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
-	if (background.r > EMPTY) {
-		solid = 1.0;
-	}
-	vec4 neighbour_top = textureLod(SCREEN_TEXTURE, SCREEN_UV + vec2(0, -TEXTURE_PIXEL_SIZE.y), 0.0);
-	vec4 neighbour_left = textureLod(SCREEN_TEXTURE, SCREEN_UV + vec2(-TEXTURE_PIXEL_SIZE.x, 0), 0.0);
-	vec4 neighbour_right = textureLod(SCREEN_TEXTURE, SCREEN_UV + vec2(TEXTURE_PIXEL_SIZE.x, 0), 0.0);
-	vec4 neighbour_bottom = textureLod(SCREEN_TEXTURE, SCREEN_UV + vec2(0, TEXTURE_PIXEL_SIZE.y), 0.0);
-	if (neighbour_top.r <= EMPTY && background.r > EMPTY) {
-		edge += 1.0;
-	}
-	if (solid > 0.0 && edge > 0.0) {
-		COLOR = ping_colour;
-	} else {
-		discard;
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
-shader_param/ping_colour = Color( 0, 0.835294, 1, 1 )
-
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
-
-[node name="Background" type="Polygon2D" parent="."]
-color = Color( 0, 0, 0, 0 )
-polygon = PoolVector2Array( -77, -78, 1035, -93, 2132, -84, 2189, 779, 2177, 1828, 1101, 1876, -130, 1858, -223, 710 )
 
 [node name="Level" type="Node2D" parent="."]
 
 [node name="Boundary1" type="Polygon2D" parent="Level"]
 position = Vector2( 21, -40 )
+color = Color( 0.129412, 0.129412, 0.129412, 1 )
 polygon = PoolVector2Array( 306, -16, 743, -7, 1102, -5, 1534, 1, 1642, 58, 1636, 184, 1502, 133, 1399, 165, 1423, 75, 1334, 48, 1246, 71, 1236, 126, 1068, 158, 927, 122, 672, 50, 613, 18, 530, 14, 472, 26, 479, 90, 428, 128, 349, 92, 249, 97, 132, 143, 19, 209, -25, 356, -38, 550, -12, 681, 11, 807, -34, 900, -112, 868, -112, 588, -117, 322, -115, -1 )
 
 [node name="Boundary2" type="Polygon2D" parent="Level"]
 position = Vector2( 162, 927 )
+color = Color( 0.129412, 0.129412, 0.129412, 1 )
 polygon = PoolVector2Array( -97, -84, -121, 63, -148, 195, -160, 339, -127, 441, -19, 524, 107, 512, 92, 659, 2, 737, 143, 809, 362, 737, 688, 794, 1141, 755, 1228, 653, 1249, 358, 1270, 323, 1374, 313, 1446, 420, 1425, 468, 1345, 508, 1297, 625, 1330, 749, 1452, 800, 1719, 737, 1755, 495, 1731, 264, 1577, 182, 1556, 139, 1707, 129, 1677, 33, 1710, -75, 1638, -114, 1701, -219, 1929, -264, 1926, 6, 1929, 504, 1920, 758, 1650, 911, 955, 908, 371, 899, -34, 900, -229, 818, -301, 183, -250, -199, -172, -147 )
 
 [node name="Boundary3" type="Polygon2D" parent="Level"]
 position = Vector2( 741, 551 )
+color = Color( 0.129412, 0.129412, 0.129412, 1 )
 polygon = PoolVector2Array( 1333, 156, 1306, 66, 1282, -44, 1204, -107, 1303, -203, 1255, -317, 1270, -443, 1186, -506, 1105, -530, 1018, -509, 1057, -428, 1108, -227, 982, -350, 913, -386, 856, -494, 814, -599, 1216, -602, 1354, -605, 1396, -251, 1348, 422, 1252, 387, 1273, 219 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level"]
@@ -64,36 +29,16 @@ polygon = PoolVector2Array( 1055, 403, 1080, 422, 1043, 460, 1009, 539, 1033, 62
 
 [node name="Polygon2D2" type="Polygon2D" parent="Level/StaticBody2D"]
 position = Vector2( 1049, 426 )
+color = Color( 0.129412, 0.129412, 0.129412, 1 )
 polygon = PoolVector2Array( 7, -22, 30, -3, -6, 33, -38, 114, -17, 192, -35, 268, 31, 304, 263, 279, 299, 233, 303, 131, 272, 98, 195, 95, 167, 68, 226, 41, 285, 29, 353, 124, 375, 328, 182, 359, -28, 426, -172, 300, -120, 86, -89, 7 )
 
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Sounds" type="Node2D" parent="."]
 
-[node name="Sound" type="Node2D" parent="Sounds"]
-position = Vector2( 405, 118 )
-scale = Vector2( 10, 10 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sounds/Sound"]
-
-[node name="Area2D" type="Area2D" parent="Sounds/Sound"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sounds/Sound/Area2D"]
-visible = false
-shape = SubResource( 1 )
-
-[node name="BackBufferCopy" type="BackBufferCopy" parent="Sounds/Sound"]
-copy_mode = 2
-
-[node name="Polygon2D" type="Polygon2D" parent="Sounds/Sound/BackBufferCopy"]
-material = SubResource( 3 )
-scale = Vector2( 1, 1 )
-polygon = PoolVector2Array( 0, -10, 3.9, -9.1, 7, -7, 9.2, -3.9, 10, 0, 9.1, 4, 7, 7, 4, 9.2, 0, 10, -3.8, 9.1, -7, 7, -9.1, 4, -10, 0, -9.2, -3.9, -7, -7, -4.2, -9.1 )
-
 [node name="Torpedos" type="Node2D" parent="."]
 
 [node name="Mines" type="Node2D" parent="."]
 position = Vector2( 40, 24 )
+
+[node name="Pings" type="Node2D" parent="."]

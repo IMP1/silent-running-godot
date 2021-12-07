@@ -1,0 +1,132 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://objects/Sound.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform vec4 ping_colour : hint_color = vec4(1.0);
+
+const float EMPTY = 32.0 / 255.0;
+
+bool is_edge(vec2 uv, vec2 pixel_size, sampler2D tex) {
+	vec4 background = textureLod(tex, uv, 0.0);
+	vec4 neighbour_top = textureLod(tex, uv + vec2(0, -pixel_size.y), 0.0);
+	if (neighbour_top.rgb != background.rgb) {
+		return true;
+	}
+	vec4 neighbour_left = textureLod(tex, uv + vec2(-pixel_size.x, 0), 0.0);
+	if (neighbour_left.rgb != background.rgb) {
+		return true;
+	}
+	vec4 neighbour_right = textureLod(tex, uv + vec2(pixel_size.x, 0), 0.0);
+	if (neighbour_right.rgb != background.rgb) {
+		return true;
+	}
+	vec4 neighbour_bottom = textureLod(tex, uv + vec2(0, pixel_size.y), 0.0);
+	if (neighbour_bottom.rgb != background.rgb) {
+		return true;
+	}
+	return false;
+}
+
+bool is_occluded() {
+	return false;
+	// TODO: Rework the shader to stop \"seeing\" behind the initial edge
+	//       This might involve changing the shader completely and having
+	//       an origin that each pixel works from to see if there's already
+	//       an edge in between.
+}
+
+bool is_solid(vec2 uv, sampler2D tex) {
+	bool solid = false;
+	vec4 background = textureLod(tex, uv, 0.0);
+	if (background.r >= EMPTY) {
+		solid = true;
+	}
+	return solid;
+}
+
+void fragment() {
+	if (is_solid(SCREEN_UV, SCREEN_TEXTURE) && 
+			is_edge(SCREEN_UV, SCREEN_PIXEL_SIZE, SCREEN_TEXTURE) && 
+			!is_occluded()) {
+		COLOR = ping_colour;
+	} else {
+		COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/ping_colour = Color( 0, 0.835294, 1, 1 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Grow"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 10, 10 ), Vector2( 10, 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BackBufferCopy/Polygon2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop"
+} ]
+}
+
+[node name="Sound" type="Node2D"]
+position = Vector2( 438, 94 )
+scale = Vector2( 10, 10 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="BackBufferCopy"]
+modulate = Color( 1, 1, 1, 0.5 )
+material = SubResource( 3 )
+polygon = PoolVector2Array( 0, -10, 3.9, -9.1, 7, -7, 9.2, -3.9, 10, 0, 9.1, 4, 7, 7, 4, 9.2, 0, 10, -3.8, 9.1, -7, 7, -9.1, 4, -10, 0, -9.2, -3.9, -7, -7, -4.2, -9.1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Grow = SubResource( 4 )

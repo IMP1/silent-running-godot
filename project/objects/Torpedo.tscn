@@ -23,7 +23,7 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 1 )
 

@@ -36,8 +36,21 @@ func _player_disconnected(args):
 	print("\n")
 
 remotesync func add_torpedo(position, direction):
-	print("pew pew")
 	var torpedo = load("res://objects/Torpedo.tscn").instance()
 	$Torpedos.add_child(torpedo)
 	torpedo.position = position
 	torpedo.direction = direction
+
+remotesync func add_sound(position):
+	var sound = load("res://objects/Sound.tscn").instance()
+	$Sounds.add_child(sound)
+	sound.position = position
+	sound.start()
+
+remotesync func add_ping(position, direction):
+	# TODO: Add ping object. Have them be slightly visible (to show where they've come from)
+#	var ping = load("res://objects/Ping.tscn").instance()
+#	$Pings.add_child(ping)
+#	ping.position = position
+#	ping.direction = direction
+	pass
