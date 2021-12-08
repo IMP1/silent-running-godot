@@ -59,8 +59,6 @@ func move_submarine(delta: float):
 			velocity = velocity.bounce(collision.normal) * IMPACT_BOUNCE
 			var damage = 40 # TODO: Determine damage somehow
 			rpc("damage", damage)
-			# TODO: Play a damage sound
-			# TODO: Add some screenshake?
 	if movement_input == Vector2.ZERO:
 		velocity = lerp(velocity, velocity * DECELLERATION, delta)
 		if velocity.length_squared() <= SPEED_EPSILON * SPEED_EPSILON:
@@ -121,6 +119,8 @@ remotesync func damage(amount):
 	if health <= 0:
 		health = 0
 		game_scene.rpc("player_died", self.player_id)
+	$DamageAudio.play()
+	# TODO: Add screenshake
 
 func _on_PassivePingTimer():
 	game_scene.rpc("add_sound", position)

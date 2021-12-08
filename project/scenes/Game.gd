@@ -62,13 +62,10 @@ remotesync func add_sound(position):
 remotesync func add_ping(position, direction):
 	var ping = load("res://objects/Ping.tscn").instance()
 	$Pings.add_child(ping)
-	print("---")
-	print(ping.game_scene)
 	ping.game_scene = self
-	print(ping.game_scene)
-	print("---")
 	ping.position = position
 	ping.direction = direction
+	ping.start()
 
 remotesync func player_died(player_id):
 	alive_players -= 1

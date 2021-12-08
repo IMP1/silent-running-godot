@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://objects/Sound.gd" type="Script" id=1]
+[ext_resource path="res://audio/ping.ogg" type="AudioStream" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -114,6 +115,7 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
