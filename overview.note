@@ -13,11 +13,14 @@ Godot multiplayer game
   - [ ] Can die from being shot
   - [ ] Win + Loss condition
   - [X] Can die from hitting walls
-  - [ ] Make everything invisible
+  - [X] Make everything invisible
   - [X] Add passive sonar
   - [X] Add active sonar
 
+## Known Bugs
 
+  - [ ] Health bars are all drawn on server game. Maybe don't use the network-master and instead use the player_id == this_player_id
+  - [ ] Enemy ships are drawn as visibly as your own
 
 ## Credits
 
