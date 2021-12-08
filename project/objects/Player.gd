@@ -5,11 +5,11 @@ const ACCELLERATION = 1
 const SPEED_EPSILON = 0.1
 const DECELLERATION = 0.8
 const TORPEDO_OFFSET = Vector2(0, 20)
-const PING_OFFSET = 20
+const PING_OFFSET = 40
 const IMPACT_BOUNCE = 0.3
 
 export(Color) var passive_stealth = Color(1.0, 1.0, 1.0)
-export(Color) var active_stealth  = Color(0.0, 0.0, 0.0)
+export(Color) var active_stealth = Color(0.0, 0.0, 0.0)
 export(int) var max_health : int = 100
 
 var silent_running = false
@@ -27,9 +27,10 @@ onready var raycast : RayCast2D = $RayCast2D
 
 func _ready() -> void:
 	health = max_health
-	$GUI/HealthBar/Health.rect_size.x = $GUI/HealthBar.rect_size.x
+	$GUI/HealthBar/Health.rect_size.x = $GUI/HealthBar.rect_size.x - 4
 	if not is_network_master():
 		$GUI.visible = false
+	$ActivePingTimer.start()
 
 func move_submarine(delta: float):
 	var movement_input : Vector2 = Vector2.ZERO
@@ -69,13 +70,21 @@ func use_abilities(delta: float) -> void:
 		game_scene.rpc("add_torpedo", position + TORPEDO_OFFSET, direction)
 	if Input.is_action_just_pressed("toggle_silent_running"):
 		toggle_silent_running(not silent_running)
-	if Input.is_action_just_pressed("active_ping"):
-		var ping_dir = Vector2(0.0, 0.0) # TODO: Get mouse direction from player
+	if Input.is_action_just_pressed("active_ping") and $ActivePingTimer.time_left == 0:
+		var mouse_pos = get_viewport().get_mouse_position()
+		mouse_pos -= get_viewport_rect().size / 2
+		var ping_dir = mouse_pos.normalized()
 		game_scene.rpc("add_ping", position + ping_dir * PING_OFFSET, ping_dir)
+		$ActivePingTimer.start()
 	if Input.is_action_just_pressed("use_secondary"):
 		pass 
 		# TODO: What is current secondary? Timer Mines, Proximity Mines, Decoy Mines, ...
 		# TODO: Use whatever it is!
+	# TODO: Remove debug map reveal
+	if Input.is_action_pressed("move_left") and \
+			Input.is_action_pressed("toggle_silent_running") and \
+			Input.is_action_pressed("move_right"):
+		game_scene.reveal_map()
 
 func toggle_silent_running(on):
 	if on:
@@ -105,7 +114,7 @@ func update_remote_velocity(new_vel: Vector2) -> void:
 
 remotesync func damage(amount):
 	health -= amount
-	$GUI/HealthBar/Health.rect_size.x = $GUI/HealthBar.rect_size.x * health / max_health
+	$GUI/HealthBar/Health.rect_size.x = ($GUI/HealthBar.rect_size.x - 4) * health / max_health
 	if health <= 0:
 		health = 0
 		game_scene.rpc("player_died", self.player_id)

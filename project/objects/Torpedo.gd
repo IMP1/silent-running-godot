@@ -6,6 +6,8 @@ const ACCELLERATION = 20
 var direction : Vector2 = Vector2.ZERO setget set_direction
 var velocity : Vector2 = Vector2.ZERO
 
+onready var game_scene : Node2D = null
+
 func set_direction(new_direction: Vector2):
 	direction = new_direction.normalized()
 	if new_direction.x < 0:
