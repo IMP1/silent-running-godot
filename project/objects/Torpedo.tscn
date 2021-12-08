@@ -20,6 +20,8 @@ tracks/0/keys = {
 }
 
 [node name="Torpedo" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 15
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

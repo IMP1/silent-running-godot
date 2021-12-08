@@ -1,13 +1,12 @@
 extends Node
 
-const DEFAULT_PORT = 35516
+const DEFAULT_PORT = 50075
 const MAX_CLIENTS = 6
 
 var server = null
 var client = null
 
 var ip_address = ""
-
 
 func _ready() -> void:
 	if OS.get_name() == "Android":

@@ -4,10 +4,9 @@
 [ext_resource path="res://objects/Player.gd" type="Script" id=2]
 
 [node name="Player1" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2( 0.2, 0.2 )
@@ -21,5 +20,39 @@ texture = ExtResource( 1 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="PassivePingTimer" type="Timer" parent="."]
+
+[node name="GUI" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -247.5
+margin_right = 247.5
+margin_bottom = 263.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ColorRect" parent="GUI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -130.5
+margin_top = -10.0
+margin_right = 130.5
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="ColorRect" parent="GUI/HealthBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="timeout" from="PassivePingTimer" to="." method="_on_PassivePingTimer"]

@@ -6,22 +6,30 @@ const SPEED_EPSILON = 0.1
 const DECELLERATION = 0.8
 const TORPEDO_OFFSET = Vector2(0, 20)
 const PING_OFFSET = 20
+const IMPACT_BOUNCE = 0.3
 
 export(Color) var passive_stealth = Color(1.0, 1.0, 1.0)
 export(Color) var active_stealth  = Color(0.0, 0.0, 0.0)
+export(int) var max_health : int = 100
 
+var silent_running = false
 var velocity : Vector2 = Vector2.ZERO
 var direction : Vector2 = Vector2(1, 0)
-export var silent_running = true setget toggle_silent_running
+var health : int = max_health
+var player_id : int = 0
 
 puppet var remote_velocity: Vector2 = Vector2.ZERO setget update_remote_velocity
 puppet var remote_position: Vector2 = position setget update_remote_position
 
 onready var tween : Tween = $Tween
 onready var game_scene : Node2D = null
+onready var raycast : RayCast2D = $RayCast2D
 
 func _ready() -> void:
-	pass
+	health = max_health
+	$GUI/HealthBar/Health.rect_size.x = $GUI/HealthBar.rect_size.x
+	if not is_network_master():
+		$GUI.visible = false
 
 func move_submarine(delta: float):
 	var movement_input : Vector2 = Vector2.ZERO
@@ -44,8 +52,11 @@ func move_submarine(delta: float):
 	if (direction.x < 0) != ($Sprite.scale.x < 0):
 		$Sprite.scale.x *= -1
 	if velocity != Vector2.ZERO:
-		position += velocity
-		# TODO: Handle collisions
+		var collision = move_and_collide(velocity)
+		if collision:
+			velocity = -velocity * IMPACT_BOUNCE
+			var damage = 40 # TODO: Determine damage somehow
+			rpc("damage", damage)
 	if movement_input == Vector2.ZERO:
 		velocity = lerp(velocity, velocity * DECELLERATION, delta)
 		if velocity.length_squared() <= SPEED_EPSILON * SPEED_EPSILON:
@@ -91,6 +102,13 @@ func update_remote_velocity(new_vel: Vector2) -> void:
 	remote_velocity = new_vel
 	if (new_vel.x < 0) != ($Sprite.scale.x < 0):
 		$Sprite.scale.x *= -1
+
+remotesync func damage(amount):
+	health -= amount
+	$GUI/HealthBar/Health.rect_size.x = $GUI/HealthBar.rect_size.x * health / max_health
+	if health <= 0:
+		health = 0
+		game_scene.rpc("player_died", self.player_id)
 
 func _on_PassivePingTimer():
 	game_scene.rpc("add_sound", position)
