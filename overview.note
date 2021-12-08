@@ -2,6 +2,8 @@
 
 Godot multiplayer game
 
+## Roadmap
+
   - [X] Add a submarine
   - [X] Make a super-basic level
   - [X] Make sure networking is working
@@ -17,3 +19,29 @@ Godot multiplayer game
 
 
 
+## Credits
+
+Ping Sound
+NoiseCollector
+https://freesound.org/people/NoiseCollector/sounds/6164/
+
+Impact Sound
+Speedenza
+https://freesound.org/people/Speedenza/sounds/222580/
+
+Font
+Vernon Adams
+https://fonts.google.com/specimen/Cutive+Mono
+
+Submarine Icon
+Marco Livolsi
+https://thenounproject.com/icon/submarine-2291473/
+
+Submarine Graphic
+Guru Deep
+https://www.pngitem.com/middle/ihiJRTw_submarine-submarine-icon-png-transparent-png/
+
+Torpedo Graphic
+Barbulat
+https://www.istockphoto.com/vector/torpedoes-gm518737764-90207401
+!!! Not free for use D:
