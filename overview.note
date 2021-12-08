@@ -10,10 +10,10 @@ Godot multiplayer game
   - [X] Shoot
   - [ ] Can die from being shot
   - [ ] Win + Loss condition
-  - [ ] Can die from hitting walls
+  - [X] Can die from hitting walls
   - [ ] Make everything invisible
-  - [ ] Add passive sonar
-  - [ ] Add active sonar
+  - [X] Add passive sonar
+  - [X] Add active sonar
 
 
 
