@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var speed = 10
-export var bounces = 3
+export var bounces = 4
 
 var direction : Vector2 = Vector2.ZERO
 var remaining_bounces = 0
@@ -16,7 +16,7 @@ func _process(delta):
 	if collision:
 		print(collision.collider)
 		game_scene.rpc("add_sound", position)
-		direction = -direction # TODO: Bounce this better (use the surface normal?)
+		direction = direction.bounce(collision.normal)
 		remaining_bounces -= 1
 		if remaining_bounces <= 0:
 			queue_free()

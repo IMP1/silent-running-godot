@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 [node name="Level" type="Node2D" parent="."]
 
 [node name="Boundary" type="StaticBody2D" parent="Level"]
+collision_mask = 31
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/Boundary"]
 polygon = PoolVector2Array( -88, -41, 436, -57, 1508, -39, 1556, -39, 1528, 91, 1418, 126, 1445, 35, 1356, 7, 1267, 29, 1255, 83, 1088, 118, 691, 7, 637, -22, 551, -25, 488, -16, 496, 50, 453, 89, 374, 51, 269, 57, 155, 100, 39, 169, -6, 316, -19, 513, 32, 770, 17, 799, -91, 760, -94, 72 )

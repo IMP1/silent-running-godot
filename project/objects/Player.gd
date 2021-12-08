@@ -7,6 +7,7 @@ const DECELLERATION = 0.8
 const TORPEDO_OFFSET = Vector2(0, 20)
 const PING_OFFSET = 40
 const IMPACT_BOUNCE = 0.3
+const PING = preload("res://objects/Ping.tscn")
 
 export(Color) var passive_stealth = Color(1.0, 1.0, 1.0)
 export(Color) var active_stealth = Color(0.0, 0.0, 0.0)
@@ -53,11 +54,13 @@ func move_submarine(delta: float):
 	if (direction.x < 0) != ($Sprite.scale.x < 0):
 		$Sprite.scale.x *= -1
 	if velocity != Vector2.ZERO:
-		var collision = move_and_collide(velocity)
-		if collision:
-			velocity = -velocity * IMPACT_BOUNCE
+		var collision : KinematicCollision2D = move_and_collide(velocity)
+		if collision and collision.collider.get_filename() != PING.get_path():
+			velocity = velocity.bounce(collision.normal) * IMPACT_BOUNCE
 			var damage = 40 # TODO: Determine damage somehow
 			rpc("damage", damage)
+			# TODO: Play a damage sound
+			# TODO: Add some screenshake?
 	if movement_input == Vector2.ZERO:
 		velocity = lerp(velocity, velocity * DECELLERATION, delta)
 		if velocity.length_squared() <= SPEED_EPSILON * SPEED_EPSILON:
