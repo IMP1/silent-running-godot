@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://sprites/sub.png" type="Texture" id=1]
 [ext_resource path="res://objects/Player.gd" type="Script" id=2]
 [ext_resource path="res://audio/impact.ogg" type="AudioStream" id=3]
+[ext_resource path="res://sprites/torpedo.png" type="Texture" id=4]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float progress = 0.5;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	if (progress <= UV.x) {
+		COLOR *= 0.5;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/progress = 0.5
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -26,39 +43,55 @@ texture = ExtResource( 1 )
 wait_time = 0.5
 one_shot = true
 
+[node name="TorpedoTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="DamageAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 
-[node name="GUI" type="Control" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -247.5
-margin_right = 247.5
-margin_bottom = 263.0
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="HUD"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBar" type="ColorRect" parent="GUI"]
+[node name="HealthBar" type="ColorRect" parent="HUD/GUI"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -130.5
-margin_top = -10.0
+margin_top = -30.0
 margin_right = 130.5
+margin_bottom = -10.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Health" type="ColorRect" parent="GUI/HealthBar"]
+[node name="Health" type="ColorRect" parent="HUD/GUI/HealthBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 2.0
 margin_top = 2.0
 margin_right = -2.0
 margin_bottom = -2.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TubeProgress" type="TextureRect" parent="HUD/GUI"]
+material = SubResource( 2 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -62.0
+margin_right = 118.0
+texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

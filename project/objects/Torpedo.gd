@@ -18,8 +18,12 @@ func _process(delta):
 		velocity = velocity.normalized() * MAX_SPEED
 	elif velocity.length_squared() < MAX_SPEED * MAX_SPEED:
 		velocity += direction * delta * ACCELLERATION
-	position += velocity * delta
-	# TODO: Handle collisions
+	var collision : KinematicCollision2D = move_and_collide(velocity)
+	if collision:
+		game_scene.rpc("add_sound", position, "impact")
+		queue_free()
+		# TODO: Deal damage if hit a player
+		# TODO: Have AOE damage?
 
 func _ready():
 	$AnimationPlayer.play("Fade")

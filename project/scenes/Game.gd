@@ -25,7 +25,6 @@ func setup(game_settings):
 		player_object.set_network_master(i)
 		player_object.position = player_positions.pop_back()
 		if i == this_player_id:
-			# TODO: Add camera node (and maybe add player script?)
 			var camera = Camera2D.new()
 			player_object.add_child(camera)
 			camera.current = true
@@ -34,9 +33,11 @@ func setup(game_settings):
 func _ready():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	$CanvasLayer/ClientMenu.visible = false
 
 func _server_disconnected():
 	print("Lost server connection!\n")
+	gui.find_node("GameStatus").text = "Connection Lost"
 
 func _player_disconnected(args):
 	print("Disconnect!")
@@ -46,6 +47,10 @@ func _player_disconnected(args):
 func get_player(player_id):
 	return $Players.find_node("Player " + str(player_id))
 
+func _input(event):
+	if event.is_action_pressed("open_menu"):
+		$CanvasLayer/ClientMenu.visible = not $CanvasLayer/ClientMenu.visible
+
 remotesync func add_torpedo(position, direction):
 	var torpedo = load("res://objects/Torpedo.tscn").instance()
 	$Torpedos.add_child(torpedo)
@@ -53,9 +58,11 @@ remotesync func add_torpedo(position, direction):
 	torpedo.position = position
 	torpedo.direction = direction
 
-remotesync func add_sound(position):
+remotesync func add_sound(position, sound_source = "ping"):
 	var sound = load("res://objects/Sound.tscn").instance()
 	$Sounds.add_child(sound)
+	if sound_source:
+		sound.audio.stream = load("res://audio/" + sound_source + ".ogg")
 	sound.position = position
 	sound.start()
 

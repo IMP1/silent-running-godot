@@ -28,10 +28,11 @@ onready var raycast : RayCast2D = $RayCast2D
 
 func _ready() -> void:
 	health = max_health
-	$GUI/HealthBar/Health.rect_size.x = $GUI/HealthBar.rect_size.x - 4
+	$HUD/GUI/HealthBar/Health.rect_size.x = $HUD/GUI/HealthBar.rect_size.x - 4
 	if not is_network_master():
-		$GUI.visible = false
+		$HUD/GUI.visible = false
 	$ActivePingTimer.start()
+	$TorpedoTimer.start()
 
 func move_submarine(delta: float):
 	var movement_input : Vector2 = Vector2.ZERO
@@ -60,30 +61,36 @@ func move_submarine(delta: float):
 			var damage = 40 # TODO: Determine damage somehow
 			rpc("damage", damage)
 	if movement_input == Vector2.ZERO:
-		velocity = lerp(velocity, velocity * DECELLERATION, delta)
+		var decelleration = DECELLERATION
+		if Input.is_action_pressed("move_brake"):
+			decelleration /= 20
+		velocity = lerp(velocity, velocity * decelleration, delta)
 		if velocity.length_squared() <= SPEED_EPSILON * SPEED_EPSILON:
 			velocity = Vector2.ZERO
 	rset_unreliable("remote_position", position)
 	rset_unreliable("remote_velocity", velocity)
 
-func use_abilities(delta: float) -> void:
-	if Input.is_action_just_pressed("fire_torpedo"):
+func _unhandled_input(event):
+	if not is_network_master():
+		return
+	if event.is_action_pressed("fire_torpedo") and $TorpedoTimer.time_left == 0:
 		game_scene.rpc("add_torpedo", position + TORPEDO_OFFSET, direction)
-	if Input.is_action_just_pressed("toggle_silent_running"):
+		$TorpedoTimer.start()
+	if event.is_action_pressed("toggle_silent_running"):
 		toggle_silent_running(not silent_running)
-	if Input.is_action_just_pressed("active_ping") and $ActivePingTimer.time_left == 0:
+	if event.is_action_pressed("active_ping") and $ActivePingTimer.time_left == 0:
 		var mouse_pos = get_viewport().get_mouse_position()
 		mouse_pos -= get_viewport_rect().size / 2
 		var ping_dir = mouse_pos.normalized()
 		game_scene.rpc("add_ping", position + ping_dir * PING_OFFSET, ping_dir)
 		$ActivePingTimer.start()
-	if Input.is_action_just_pressed("use_secondary"):
+	if event.is_action_pressed("use_secondary"):
 		pass 
 		# TODO: What is current secondary? Timer Mines, Proximity Mines, Decoy Mines, ...
 		# TODO: Use whatever it is!
 	# TODO: Remove debug map reveal
 	if Input.is_action_pressed("move_left") and \
-			Input.is_action_pressed("toggle_silent_running") and \
+			event.is_action_pressed("toggle_silent_running") and \
 			Input.is_action_pressed("move_right"):
 		game_scene.reveal_map()
 
@@ -96,10 +103,14 @@ func toggle_silent_running(on):
 		$PassivePingTimer.start()
 	silent_running = on
 
+func update_gui():
+	var progress = ($TorpedoTimer.wait_time - $TorpedoTimer.time_left) / $TorpedoTimer.wait_time
+	$HUD/GUI/TubeProgress.material.set_shader_param("progress", progress)
+
 func _process(delta: float) -> void:
+	update_gui()
 	if is_network_master():
 		move_submarine(delta)
-		use_abilities(delta)
 	else:
 		position += remote_velocity # Guess from last known velocity
 
@@ -115,7 +126,7 @@ func update_remote_velocity(new_vel: Vector2) -> void:
 
 remotesync func damage(amount):
 	health -= amount
-	$GUI/HealthBar/Health.rect_size.x = ($GUI/HealthBar.rect_size.x - 4) * health / max_health
+	$HUD/GUI/HealthBar/Health.rect_size.x = ($HUD/GUI/HealthBar.rect_size.x - 4) * health / max_health
 	if health <= 0:
 		health = 0
 		game_scene.rpc("player_died", self.player_id)

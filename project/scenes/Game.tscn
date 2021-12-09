@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://fonts/CutiveMono-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Game_GUI.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -65,7 +66,7 @@ position = Vector2( 40, 24 )
 [node name="GUI" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -84,3 +85,106 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ClientMenu" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/ClientMenu"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -240.0
+margin_top = -300.0
+margin_right = -120.0
+margin_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 16
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="CanvasLayer/ClientMenu/Buttons"]
+margin_top = 272.0
+margin_right = 120.0
+margin_bottom = 292.0
+text = "Resume"
+
+[node name="Quit" type="Button" parent="CanvasLayer/ClientMenu/Buttons"]
+margin_top = 308.0
+margin_right = 120.0
+margin_bottom = 328.0
+text = "Quit"
+
+[node name="Controls" type="VBoxContainer" parent="CanvasLayer/ClientMenu"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 120.0
+margin_top = -34.0
+margin_right = 240.0
+margin_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Movement" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+margin_right = 177.0
+margin_bottom = 14.0
+text = "[WASD]: Move"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Brake" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+margin_top = 18.0
+margin_right = 177.0
+margin_bottom = 32.0
+text = "[SHIFT]: Brake"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ping" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+margin_top = 36.0
+margin_right = 177.0
+margin_bottom = 50.0
+text = "[LMB]: Fire Ping"
+
+[node name="SilentRunning" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+margin_top = 54.0
+margin_right = 177.0
+margin_bottom = 68.0
+text = "[TAB]: Toggle Silent Running"
+
+[node name="Torpedo" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+margin_top = 72.0
+margin_right = 177.0
+margin_bottom = 86.0
+text = "[SPACE]: Fire Torpedo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mine" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+margin_top = 90.0
+margin_right = 177.0
+margin_bottom = 104.0
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+text = "[E]: Drop Mine"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="CanvasLayer/ClientMenu/Buttons/Resume" to="CanvasLayer/GUI" method="_on_Resume"]
+[connection signal="pressed" from="CanvasLayer/ClientMenu/Buttons/Quit" to="CanvasLayer/GUI" method="_on_Quit"]
