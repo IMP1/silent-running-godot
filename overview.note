@@ -16,11 +16,13 @@ Godot multiplayer game
   - [X] Make everything invisible
   - [X] Add passive sonar
   - [X] Add active sonar
+  - [ ] Release a build for testing
 
 ## Known Bugs
 
   - [ ] Health bars are all drawn on server game. Maybe don't use the network-master and instead use the player_id == this_player_id
   - [ ] Enemy ships are drawn as visibly as your own
+  - [ ] If travelling down, your own torpedo can hit you
 
 ## Credits
 
