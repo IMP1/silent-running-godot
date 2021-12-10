@@ -49,6 +49,7 @@ one_shot = true
 
 [node name="DamageAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+bus = "Sounds"
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

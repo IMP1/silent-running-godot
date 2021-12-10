@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cinematic-space-drone.ogg-55d0c2e5b31fd0246e51f6c4c35f672c.oggstr"
+
+[deps]
+
+source_file="res://audio/cinematic-space-drone.ogg"
+dest_files=[ "res://.import/cinematic-space-drone.ogg-55d0c2e5b31fd0246e51f6c4c35f672c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

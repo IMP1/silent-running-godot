@@ -37,7 +37,7 @@ func setup(game_settings):
 func _ready():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
-	$CanvasLayer/ClientMenu.visible = false
+	$CanvasLayer/Menu.visible = false
 
 func _server_disconnected():
 	print("Lost server connection!\n")
@@ -53,7 +53,7 @@ func get_player(player_id):
 
 func _input(event):
 	if event.is_action_pressed("open_menu"):
-		$CanvasLayer/ClientMenu.visible = not $CanvasLayer/ClientMenu.visible
+		$CanvasLayer/Menu.visible = not $CanvasLayer/Menu.visible
 
 remotesync func add_torpedo(position, direction):
 	var torpedo = load("res://objects/Torpedo.tscn").instance()

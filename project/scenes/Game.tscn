@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fonts/CutiveMono-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
-[ext_resource path="res://scenes/Game_GUI.gd" type="Script" id=3]
+[ext_resource path="res://audio/cinematic-space-drone.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scenes/GameMenu.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -61,12 +62,17 @@ position = Vector2( 40, 24 )
 
 [node name="Pings" type="Node2D" parent="."]
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Music"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 3 )
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -86,15 +92,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ClientMenu" type="Control" parent="CanvasLayer"]
+[node name="Menu" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/ClientMenu"]
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/Menu"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -111,19 +118,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Resume" type="Button" parent="CanvasLayer/ClientMenu/Buttons"]
+[node name="Resume" type="Button" parent="CanvasLayer/Menu/Buttons"]
 margin_top = 272.0
 margin_right = 120.0
 margin_bottom = 292.0
 text = "Resume"
 
-[node name="Quit" type="Button" parent="CanvasLayer/ClientMenu/Buttons"]
+[node name="Quit" type="Button" parent="CanvasLayer/Menu/Buttons"]
 margin_top = 308.0
 margin_right = 120.0
 margin_bottom = 328.0
 text = "Quit"
 
-[node name="Controls" type="VBoxContainer" parent="CanvasLayer/ClientMenu"]
+[node name="Controls" type="VBoxContainer" parent="CanvasLayer/Menu"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 120.0
@@ -138,7 +145,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Movement" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+[node name="Movement" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_right = 177.0
 margin_bottom = 14.0
 text = "[WASD]: Move"
@@ -146,7 +153,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Brake" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+[node name="Brake" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_top = 18.0
 margin_right = 177.0
 margin_bottom = 32.0
@@ -155,19 +162,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Ping" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+[node name="Ping" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_top = 36.0
 margin_right = 177.0
 margin_bottom = 50.0
 text = "[LMB]: Fire Ping"
 
-[node name="SilentRunning" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+[node name="SilentRunning" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_top = 54.0
 margin_right = 177.0
 margin_bottom = 68.0
 text = "[TAB]: Toggle Silent Running"
 
-[node name="Torpedo" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+[node name="Torpedo" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_top = 72.0
 margin_right = 177.0
 margin_bottom = 86.0
@@ -176,7 +183,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Mine" type="Label" parent="CanvasLayer/ClientMenu/Controls"]
+[node name="Mine" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_top = 90.0
 margin_right = 177.0
 margin_bottom = 104.0
@@ -186,5 +193,83 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="CanvasLayer/ClientMenu/Buttons/Resume" to="CanvasLayer/GUI" method="_on_Resume"]
-[connection signal="pressed" from="CanvasLayer/ClientMenu/Buttons/Quit" to="CanvasLayer/GUI" method="_on_Quit"]
+[node name="Settings" type="VBoxContainer" parent="CanvasLayer/Menu"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_top = 60.0
+margin_right = -60.0
+grow_horizontal = 0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterVolume" type="HBoxContainer" parent="CanvasLayer/Menu/Settings"]
+margin_right = 221.0
+margin_bottom = 16.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/Settings/MasterVolume"]
+margin_top = 1.0
+margin_right = 97.0
+margin_bottom = 15.0
+text = "Master Volume"
+align = 2
+
+[node name="Slider" type="HSlider" parent="CanvasLayer/Menu/Settings/MasterVolume"]
+margin_left = 101.0
+margin_right = 221.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 120, 0 )
+value = 100.0
+
+[node name="SoundVolume" type="HBoxContainer" parent="CanvasLayer/Menu/Settings"]
+margin_top = 20.0
+margin_right = 221.0
+margin_bottom = 36.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/Settings/SoundVolume"]
+margin_left = 12.0
+margin_top = 1.0
+margin_right = 97.0
+margin_bottom = 15.0
+text = "Sound Effects"
+align = 2
+
+[node name="Slider" type="HSlider" parent="CanvasLayer/Menu/Settings/SoundVolume"]
+margin_left = 101.0
+margin_right = 221.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 120, 0 )
+value = 100.0
+
+[node name="MusicVolume" type="HBoxContainer" parent="CanvasLayer/Menu/Settings"]
+margin_top = 40.0
+margin_right = 221.0
+margin_bottom = 56.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Menu/Settings/MusicVolume"]
+margin_left = 59.0
+margin_top = 1.0
+margin_right = 97.0
+margin_bottom = 15.0
+text = "Music"
+align = 2
+
+[node name="Slider" type="HSlider" parent="CanvasLayer/Menu/Settings/MusicVolume"]
+margin_left = 101.0
+margin_right = 221.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 120, 0 )
+value = 100.0
+
+[connection signal="pressed" from="CanvasLayer/Menu/Buttons/Resume" to="CanvasLayer/Menu" method="_on_Resume"]
+[connection signal="pressed" from="CanvasLayer/Menu/Buttons/Quit" to="CanvasLayer/Menu" method="_on_Quit"]
+[connection signal="value_changed" from="CanvasLayer/Menu/Settings/MasterVolume/Slider" to="CanvasLayer/Menu" method="_on_MasterVolume_changed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/Settings/SoundVolume/Slider" to="CanvasLayer/Menu" method="_on_SoundVolume_changed"]
+[connection signal="value_changed" from="CanvasLayer/Menu/Settings/MusicVolume/Slider" to="CanvasLayer/Menu" method="_on_MusicVolume_changed"]
