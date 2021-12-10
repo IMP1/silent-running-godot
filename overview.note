@@ -10,19 +10,31 @@ Godot multiplayer game
   - [X] Move around
   - [X] Sync up movement and positions
   - [X] Shoot
-  - [ ] Can die from being shot
-  - [ ] Win + Loss condition
+  - [X] Can die from being shot
   - [X] Can die from hitting walls
   - [X] Make everything invisible
   - [X] Add passive sonar
   - [X] Add active sonar
   - [X] Release a build for testing
+  - [ ] Settings
+      - [X] Volume Controls
+      - [ ] 
+  - [ ] Win + Loss condition
+  - [ ] Add mines for distraction + destruction
 
 ## Known Bugs
 
   - [X] Health bars are all drawn on server game. Maybe don't use the network-master and instead use the player_id == this_player_id
   - [X] Enemy ships are drawn as visibly as your own
   - [ ] If travelling down, your own torpedo can hit you
+  - [ ] Sounds travel through surfaces and so you can see the backs as well
+  - [ ] You can faintly make out objects and enemies
+
+## Ideas
+
+  - [ ] Sea life? Non-threats that are moving and might make sounds?
+  - [ ] Terrain that the submarine can traverse through, but pings bounce off (seaweed?)
+  - [ ] Destructible Terrain?
 
 ## Credits
 
@@ -50,3 +62,7 @@ Torpedo Graphic
 Barbulat
 https://www.istockphoto.com/vector/torpedoes-gm518737764-90207401
 !!! Not free for use D:
+
+Background Music: Cinematic Space Drone
+ZakharValaha
+https://pixabay.com/music/ambient-cinematic-space-drone-10623/
