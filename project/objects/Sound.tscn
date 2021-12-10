@@ -72,7 +72,7 @@ tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
@@ -127,6 +127,8 @@ copy_mode = 2
 [node name="Polygon2D" type="Polygon2D" parent="BackBufferCopy"]
 material = SubResource( 3 )
 polygon = PoolVector2Array( 0, -10, 3.9, -9.1, 7, -7, 9.2, -3.9, 10, 0, 9.1, 4, 7, 7, 4, 9.2, 0, 10, -3.8, 9.1, -7, 7, -9.1, 4, -10, 0, -9.2, -3.9, -7, -7, -4.2, -9.1 )
+
+[node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Grow = SubResource( 4 )

@@ -12,6 +12,7 @@ onready var game_scene : Node2D = null
 onready var trail : Line2D = $Line2D
 
 func _ready():
+	add_to_group("Ping")
 	remaining_bounces = bounces
 
 func start():

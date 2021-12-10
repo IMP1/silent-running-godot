@@ -11,7 +11,7 @@ func setup(game_settings):
 	# TODO: Procedural Level Generation
 	var player_positions = []
 	player_positions.append(Vector2(400, 200))
-	player_positions.append(Vector2(400, 400))
+	player_positions.append(Vector2(1500, 1200))
 	# TODO: Randomise player positions
 	
 	this_player_id = game_settings["player_id"]
@@ -28,6 +28,10 @@ func setup(game_settings):
 			var camera = Camera2D.new()
 			player_object.add_child(camera)
 			camera.current = true
+		else:
+			player_object.get_node("HUD/GUI").visible = false
+			player_object.get_node("Sprite").modulate = player_object.remote_stealth
+		player_object.start()
 	alive_players = player_ids.size()
 
 func _ready():
@@ -58,11 +62,14 @@ remotesync func add_torpedo(position, direction):
 	torpedo.position = position
 	torpedo.direction = direction
 
-remotesync func add_sound(position, sound_source = "ping"):
+remotesync func add_sound(position, sound_source = "ping", size = 10.0):
 	var sound = load("res://objects/Sound.tscn").instance()
 	$Sounds.add_child(sound)
 	if sound_source:
 		sound.audio.stream = load("res://audio/" + sound_source + ".ogg")
+	else:
+		sound.audio.stream = null
+	sound.size = size
 	sound.position = position
 	sound.start()
 

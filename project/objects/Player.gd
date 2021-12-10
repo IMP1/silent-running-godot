@@ -7,10 +7,10 @@ const DECELLERATION = 0.8
 const TORPEDO_OFFSET = Vector2(0, 20)
 const PING_OFFSET = 40
 const IMPACT_BOUNCE = 0.3
-const PING = preload("res://objects/Ping.tscn")
 
 export(Color) var passive_stealth = Color(1.0, 1.0, 1.0)
 export(Color) var active_stealth = Color(0.0, 0.0, 0.0)
+export(Color) var remote_stealth = Color("#212121")
 export(int) var max_health : int = 100
 
 var silent_running = false
@@ -24,15 +24,17 @@ puppet var remote_position: Vector2 = position setget update_remote_position
 
 onready var tween : Tween = $Tween
 onready var game_scene : Node2D = null
-onready var raycast : RayCast2D = $RayCast2D
 
 func _ready() -> void:
+	add_to_group("Player")
+
+func start():
 	health = max_health
 	$HUD/GUI/HealthBar/Health.rect_size.x = $HUD/GUI/HealthBar.rect_size.x - 4
-	if not is_network_master():
-		$HUD/GUI.visible = false
 	$ActivePingTimer.start()
 	$TorpedoTimer.start()
+	if is_network_master():
+		toggle_silent_running(silent_running)
 
 func move_submarine(delta: float):
 	var movement_input : Vector2 = Vector2.ZERO
@@ -56,10 +58,14 @@ func move_submarine(delta: float):
 		$Sprite.scale.x *= -1
 	if velocity != Vector2.ZERO:
 		var collision : KinematicCollision2D = move_and_collide(velocity)
-		if collision and collision.collider.get_filename() != PING.get_path():
-			velocity = velocity.bounce(collision.normal) * IMPACT_BOUNCE
-			var damage = 40 # TODO: Determine damage somehow
-			rpc("damage", damage)
+		if collision and not collision.collider.is_in_group("Ping"):
+			if collision.collider.is_in_group("Torpdeo"):
+				rpc("damage", collision.collider.DAMAGE)
+				collision.collider.explode()
+			else:
+				velocity = velocity.bounce(collision.normal) * IMPACT_BOUNCE
+				var damage = 40 # TODO: Determine damage somehow
+				rpc("damage", damage)
 	if movement_input == Vector2.ZERO:
 		var decelleration = DECELLERATION
 		if Input.is_action_pressed("move_brake"):
@@ -101,6 +107,8 @@ func toggle_silent_running(on):
 	else:
 		$Sprite.modulate = passive_stealth
 		$PassivePingTimer.start()
+		if game_scene:
+			game_scene.rpc("add_sound", position, null, 15.0)
 	silent_running = on
 
 func update_gui():
@@ -134,4 +142,4 @@ remotesync func damage(amount):
 	# TODO: Add screenshake
 
 func _on_PassivePingTimer():
-	game_scene.rpc("add_sound", position)
+	game_scene.rpc("add_sound", position, null, 15.0)
