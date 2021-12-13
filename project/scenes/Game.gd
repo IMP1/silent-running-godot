@@ -94,7 +94,7 @@ remotesync func player_died(player_id):
 		get_player(player_id).find_node("Sprite").modulate = Color.red
 
 func reveal_map():
-	for body in $Level.get_children():
+	for body in $LevelContainer/Level.get_children():
 		for polygon in body.get_children():
 			if polygon is Polygon2D:
 				polygon.color = Color.white

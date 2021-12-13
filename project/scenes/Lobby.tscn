@@ -14,7 +14,6 @@ __meta__ = {
 }
 
 [node name="Multiplayer" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -62,6 +61,7 @@ margin_bottom = 64.0
 text = "Join Server"
 
 [node name="HostServer" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )

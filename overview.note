@@ -35,7 +35,7 @@ Godot multiplayer game
         TRY having the shaders *not* have a BackBuffer thing and see what that does
   - [ ] You can faintly make out objects and enemies
         TRY having objects be background colour + half opacity (and check if opacity == half)
-  - [ ] Initial values of audio sliders are always 100% and don't represent initial audio bus volumes
+  - [X] Initial values of audio sliders are always 100% and don't represent initial audio bus volumes
 
 ## Ideas
 
