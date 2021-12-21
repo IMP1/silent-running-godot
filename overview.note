@@ -21,10 +21,10 @@ Godot multiplayer game
       - [ ] 
   - [ ] Win + Loss condition
   - [ ] Add mines for distraction + destruction
-  - [ ] Add a title screen
-  - [ ] Add credits
+  - [X] Add a title screen
+  - [X] Add credits
   - [ ] Add better multiplayer (player names)
-  - [ ] Make a couple of hand-made maps (each with starting location nodes that are selected at random)
+  - [X] Make a couple of hand-made maps (each with starting location nodes that are selected at random)
 
 ## Known Bugs
 

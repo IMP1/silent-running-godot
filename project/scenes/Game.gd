@@ -1,18 +1,17 @@
 extends Node2D
 
-const player_script = preload("res://objects/Player.gd")
-
 var alive_players : int = 0
 var this_player_id : int = 0
 
 onready var gui = $CanvasLayer/GUI
 
 func setup(game_settings):
-	# TODO: Procedural Level Generation
+	# TODO: Choose random level from levels folder
 	var player_positions = []
-	player_positions.append(Vector2(400, 200))
-	player_positions.append(Vector2(1500, 1200))
-	# TODO: Randomise player positions
+	for position in $LevelContainer/Level/StartingPositions.get_children():
+		player_positions.append(position.position)
+	randomize()
+	player_positions.shuffle()
 	
 	this_player_id = game_settings["player_id"]
 	var player_ids : Array = game_settings["player_ids"]
@@ -33,6 +32,7 @@ func setup(game_settings):
 			player_object.get_node("Sprite").modulate = player_object.remote_stealth
 		player_object.start()
 	alive_players = player_ids.size()
+	hide_map()
 
 func _ready():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
@@ -54,6 +54,8 @@ func get_player(player_id):
 func _input(event):
 	if event.is_action_pressed("open_menu"):
 		$CanvasLayer/Menu.visible = not $CanvasLayer/Menu.visible
+	if event.is_action_pressed("cheat"):
+		reveal_map()
 
 remotesync func add_torpedo(position, direction):
 	var torpedo = load("res://objects/Torpedo.tscn").instance()
@@ -93,8 +95,14 @@ remotesync func player_died(player_id):
 	elif get_player(this_player_id).health <= 0:
 		get_player(player_id).find_node("Sprite").modulate = Color.red
 
+func hide_map():
+	for body in $LevelContainer/Level/Rocks.get_children():
+		for polygon in body.get_children():
+			if polygon is Polygon2D:
+				polygon.color = Color("212121")
+
 func reveal_map():
-	for body in $LevelContainer/Level.get_children():
+	for body in $LevelContainer/Level/Rocks.get_children():
 		for polygon in body.get_children():
 			if polygon is Polygon2D:
 				polygon.color = Color.white
