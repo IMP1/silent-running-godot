@@ -1,6 +1,7 @@
 extends Control
 
 var external_ip_address : String = "" setget set_ip_address
+onready var main = $"/root/Main"
 
 func set_ip_address(address):
 	external_ip_address = address
@@ -19,3 +20,6 @@ func _on_CreateServer() -> void:
 func _on_JoinServer() -> void:
 	$"../JoinServer".visible = true
 	visible = false
+
+func _on_Back() -> void:
+	main.transition_scene("res://scenes/Title.tscn")

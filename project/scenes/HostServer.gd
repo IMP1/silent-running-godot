@@ -13,6 +13,7 @@ func _ready() -> void:
 func _player_connected(id: int) -> void:
 	var client_label = Label.new()
 	client_label.text = "Player " + str(id)
+	client_label.set("custom_fonts/font", load("res://fonts/CutiveMono-Regular.ttf"))
 	clients[id] = client_label
 	client_list.add_child(client_label)
 
