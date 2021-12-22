@@ -37,6 +37,8 @@ func setup(game_settings):
 func _ready():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	for placeholder_player in $Players.get_children():
+		$Players.remove_child(placeholder_player)
 	$CanvasLayer/Menu.visible = false
 
 func _server_disconnected():

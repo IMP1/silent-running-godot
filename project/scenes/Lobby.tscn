@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Multiplayer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HostServer.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 
 [sub_resource type="DynamicFont" id=3]
 size = 24
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -31,7 +34,6 @@ __meta__ = {
 }
 
 [node name="Multiplayer" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -72,28 +74,28 @@ __meta__ = {
 }
 
 [node name="HostServer" type="Button" parent="Multiplayer/Buttons"]
-margin_right = 177.0
-margin_bottom = 33.0
+margin_right = 122.0
+margin_bottom = 25.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Host Server"
 
 [node name="JoinServer" type="Button" parent="Multiplayer/Buttons"]
-margin_top = 57.0
-margin_right = 177.0
-margin_bottom = 90.0
+margin_top = 49.0
+margin_right = 122.0
+margin_bottom = 74.0
 grow_horizontal = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Join Server"
 
 [node name="Back" type="Button" parent="Multiplayer"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
-margin_top = -64.0
+margin_top = -40.0
 margin_right = 12.0
 margin_bottom = -20.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -244,7 +246,7 @@ margin_left = -43.5
 margin_top = -20.0
 margin_right = 43.5
 grow_horizontal = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Start Game!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -254,16 +256,17 @@ __meta__ = {
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
-margin_top = -64.0
+margin_top = -40.0
 margin_right = 92.0
 margin_bottom = -20.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="JoinServer" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
@@ -313,9 +316,9 @@ placeholder_text = "IP Address"
 
 [node name="Connect" type="Button" parent="JoinServer/IP"]
 margin_left = 176.0
-margin_right = 248.0
+margin_right = 228.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Join"
 
 [node name="CurrentState" type="Label" parent="JoinServer"]
@@ -337,11 +340,11 @@ __meta__ = {
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
-margin_top = -64.0
+margin_top = -40.0
 margin_right = 42.0
 margin_bottom = -20.0
 theme = SubResource( 6 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false

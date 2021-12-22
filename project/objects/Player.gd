@@ -95,10 +95,14 @@ func _unhandled_input(event):
 		# TODO: What is current secondary? Timer Mines, Proximity Mines, Decoy Mines, ...
 		# TODO: Use whatever it is!
 	# TODO: Remove debug map reveal
-	if Input.is_action_pressed("move_left") and \
-			event.is_action_pressed("toggle_silent_running") and \
-			Input.is_action_pressed("move_right"):
-		game_scene.reveal_map()
+	if Input.is_action_pressed("cycle_secondary_forward"):
+		var list : HBoxContainer = $HUD/GUI/Utilities/List
+		var last = list.get_child(list.get_child_count() - 1)
+		list.move_child(last, 0)
+	if Input.is_action_pressed("cycle_secondary_backward"):
+		var list : HBoxContainer = $HUD/GUI/Utilities/List
+		var first = list.get_child(0)
+		list.move_child(first, list.get_child_count() - 1)
 
 func toggle_silent_running(on):
 	if on:

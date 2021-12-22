@@ -1,16 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://fonts/CutiveMono-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
 [ext_resource path="res://audio/cinematic-space-drone.ogg" type="AudioStream" id=3]
 [ext_resource path="res://scenes/GameMenu.gd" type="Script" id=4]
 [ext_resource path="res://levels/1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/Player.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 1 )
 
 [node name="Game" type="Node2D"]
+visible = false
 script = ExtResource( 2 )
 
 [node name="LevelContainer" type="Node2D" parent="."]
@@ -18,6 +20,8 @@ script = ExtResource( 2 )
 [node name="Level" parent="LevelContainer" instance=ExtResource( 5 )]
 
 [node name="Players" type="Node2D" parent="."]
+
+[node name="Player" parent="Players" instance=ExtResource( 6 )]
 
 [node name="Sounds" type="Node2D" parent="."]
 
@@ -96,65 +100,128 @@ margin_right = 120.0
 margin_bottom = 328.0
 text = "Quit"
 
-[node name="Controls" type="VBoxContainer" parent="CanvasLayer/Menu"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 120.0
-margin_top = -34.0
-margin_right = 240.0
-margin_bottom = 34.0
+[node name="Controls" type="Control" parent="CanvasLayer/Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-alignment = 1
+
+[node name="Movement" type="Control" parent="CanvasLayer/Menu/Controls"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Up" type="Label" parent="CanvasLayer/Menu/Controls/Movement"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -40.0
+margin_right = 11.0
+margin_bottom = -26.0
+text = "[W]"
+align = 1
+valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Movement" type="Label" parent="CanvasLayer/Menu/Controls"]
-margin_right = 177.0
-margin_bottom = 14.0
-text = "[WASD]: Move"
+[node name="Down" type="Label" parent="CanvasLayer/Menu/Controls/Movement"]
+margin_left = -6.0
+margin_top = 42.0
+margin_right = 9.0
+margin_bottom = 56.0
+text = "[S]"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="Label" parent="CanvasLayer/Menu/Controls/Movement"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -65.0
+margin_top = 2.0
+margin_right = -48.0
+margin_bottom = 16.0
+text = "[A]"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="Label" parent="CanvasLayer/Menu/Controls/Movement"]
+margin_left = 43.0
+margin_top = 4.0
+margin_right = 61.0
+margin_bottom = 18.0
+text = "[D]"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Brake" type="Label" parent="CanvasLayer/Menu/Controls"]
-margin_top = 18.0
+margin_top = 4.0
 margin_right = 177.0
-margin_bottom = 32.0
+margin_bottom = 18.0
 text = "[SHIFT]: Brake"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Ping" type="Label" parent="CanvasLayer/Menu/Controls"]
-margin_top = 36.0
+margin_top = 22.0
 margin_right = 177.0
-margin_bottom = 50.0
+margin_bottom = 36.0
 text = "[LMB]: Fire Ping"
 
 [node name="SilentRunning" type="Label" parent="CanvasLayer/Menu/Controls"]
-margin_top = 54.0
+margin_top = 40.0
 margin_right = 177.0
-margin_bottom = 68.0
+margin_bottom = 54.0
 text = "[TAB]: Toggle Silent Running"
 
 [node name="Torpedo" type="Label" parent="CanvasLayer/Menu/Controls"]
-margin_top = 72.0
-margin_right = 177.0
-margin_bottom = 86.0
-text = "[SPACE]: Fire Torpedo"
+margin_left = 37.0
+margin_top = 536.0
+margin_right = 84.0
+margin_bottom = 550.0
+text = "[SPACE]"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Mine" type="Label" parent="CanvasLayer/Menu/Controls"]
-margin_top = 90.0
-margin_right = 177.0
-margin_bottom = 104.0
-custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
-text = "[E]: Drop Mine"
+margin_left = 505.0
+margin_top = 83.0
+margin_right = 520.0
+margin_bottom = 97.0
+text = "[E]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MineNext" type="Label" parent="CanvasLayer/Menu/Controls"]
+margin_left = 598.0
+margin_top = 80.0
+margin_right = 614.0
+margin_bottom = 94.0
+text = "[2]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MinePrev" type="Label" parent="CanvasLayer/Menu/Controls"]
+margin_left = 410.0
+margin_top = 80.0
+margin_right = 426.0
+margin_bottom = 94.0
+text = "[1]"
 __meta__ = {
 "_edit_use_anchors_": false
 }
