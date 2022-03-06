@@ -20,11 +20,12 @@ Godot multiplayer game
       - [X] Volume Controls
       - [ ] 
   - [ ] Win + Loss condition
-  - [ ] Add mines for distraction + destruction
+  - [X] Add mines for distraction + destruction
   - [X] Add a title screen
   - [X] Add credits
   - [ ] Add better multiplayer (player names)
   - [X] Make a couple of hand-made maps (each with starting location nodes that are selected at random)
+  - [ ] Sounds being visually fainter the further away they are
 
 ## Known Bugs
 
@@ -45,7 +46,6 @@ Godot multiplayer game
   - [ ] Team play?
   - [ ] Missions? (escort, treasure-hunt, etc.)
   - [ ] Managing ship in some way (hull pressure, crew sanity, etc.)
-  - [ ] 
 
 ## Credits
 
@@ -56,6 +56,10 @@ https://freesound.org/people/NoiseCollector/sounds/6164/
 Impact Sound
 Speedenza
 https://freesound.org/people/Speedenza/sounds/222580/
+
+Stun Sound
+AnthonyChan0
+https://freesound.org/people/AnthonyChan0/sounds/264779/
 
 Font
 Vernon Adams

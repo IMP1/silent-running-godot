@@ -27,6 +27,7 @@ func setup(game_settings):
 			var camera = Camera2D.new()
 			player_object.add_child(camera)
 			camera.current = true
+			Screenshake.camera = camera
 		else:
 			player_object.get_node("HUD/GUI").visible = false
 			player_object.get_node("Sprite").modulate = player_object.remote_stealth
@@ -84,6 +85,13 @@ remotesync func add_ping(position, direction):
 	ping.position = position
 	ping.direction = direction
 	ping.start()
+
+remotesync func add_mine(position, mine_type):
+	var mine = load("res://objects/" + mine_type + ".tscn").instance()
+	$Mines.add_child(mine)
+	mine.game_scene = self
+	mine.position = position
+	mine.start()
 
 remotesync func player_died(player_id):
 	alive_players -= 1

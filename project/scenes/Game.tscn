@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/CutiveMono-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
 [ext_resource path="res://audio/cinematic-space-drone.ogg" type="AudioStream" id=3]
 [ext_resource path="res://scenes/GameMenu.gd" type="Script" id=4]
 [ext_resource path="res://levels/1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://objects/Player.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -20,17 +19,12 @@ script = ExtResource( 2 )
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="Player" parent="Players" instance=ExtResource( 6 )]
-
-[node name="Sprite" parent="Players/Player" index="1"]
-position = Vector2( 512, 300 )
-
-[node name="Sounds" type="Node2D" parent="."]
-
 [node name="Torpedos" type="Node2D" parent="."]
 
 [node name="Mines" type="Node2D" parent="."]
 position = Vector2( 40, 24 )
+
+[node name="Sounds" type="Node2D" parent="."]
 
 [node name="Pings" type="Node2D" parent="."]
 
@@ -46,7 +40,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="GameStatus" type="Label" parent="CanvasLayer/GUI"]
@@ -70,6 +65,8 @@ anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 4 )
 __meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -108,9 +105,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Movement" type="Control" parent="CanvasLayer/Menu/Controls"]
 anchor_left = 0.5
@@ -203,17 +197,14 @@ __meta__ = {
 
 [node name="Mine" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_left = 505.0
-margin_top = 83.0
+margin_top = 508.0
 margin_right = 520.0
-margin_bottom = 97.0
+margin_bottom = 522.0
 text = "[E]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MineNext" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_left = 598.0
-margin_top = 80.0
+margin_top = 512.0
 margin_right = 614.0
 margin_bottom = 94.0
 text = "[2]"
@@ -223,13 +214,10 @@ __meta__ = {
 
 [node name="MinePrev" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_left = 410.0
-margin_top = 80.0
+margin_top = 512.0
 margin_right = 426.0
 margin_bottom = 94.0
 text = "[1]"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Settings" type="VBoxContainer" parent="CanvasLayer/Menu"]
 anchor_left = 1.0
@@ -311,5 +299,3 @@ value = 100.0
 [connection signal="value_changed" from="CanvasLayer/Menu/Settings/MasterVolume/Slider" to="CanvasLayer/Menu" method="_on_MasterVolume_changed"]
 [connection signal="value_changed" from="CanvasLayer/Menu/Settings/SoundVolume/Slider" to="CanvasLayer/Menu" method="_on_SoundVolume_changed"]
 [connection signal="value_changed" from="CanvasLayer/Menu/Settings/MusicVolume/Slider" to="CanvasLayer/Menu" method="_on_MusicVolume_changed"]
-
-[editable path="Players/Player"]

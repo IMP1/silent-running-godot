@@ -17,7 +17,7 @@ func _on_Resume():
 
 func _on_Quit():
 	# TODO: Close game. Disconnect from server? Back to Lobby
-	pass # Replace with function body.
+	get_tree().quit(0)
 
 func _on_MasterVolume_changed(value):
 	var db = linear2db(value / 100)

@@ -27,6 +27,9 @@ func _process(delta):
 	if collision:
 		if collision.collider.is_in_group("Player"):
 			collision.collider.rpc("damage", DAMAGE)
+		if collision.collider.is_in_group("Mine"):
+			game_scene.rpc("add_sound", position, "impact")
+			collision.collider.queue_free()
 		explode()
 		# TODO: Have AOE damage?
 

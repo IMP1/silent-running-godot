@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/stun.ogg-dbc99e4c18e0e2c27db58c25f0c6ba76.oggstr"
+
+[deps]
+
+source_file="res://audio/stun.ogg"
+dest_files=[ "res://.import/stun.ogg-dbc99e4c18e0e2c27db58c25f0c6ba76.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
