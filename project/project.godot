@@ -8,6 +8,46 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "DecoyMine",
+"language": "GDScript",
+"path": "res://objects/DecoyMine.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "ExplosiveMine",
+"language": "GDScript",
+"path": "res://objects/ExplosiveMine.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Mine",
+"language": "GDScript",
+"path": "res://objects/Mine.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://objects/Player.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "StunMine",
+"language": "GDScript",
+"path": "res://objects/StunMine.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Torpedo",
+"language": "GDScript",
+"path": "res://objects/Torpedo.gd"
+} ]
+_global_script_class_icons={
+"DecoyMine": "",
+"ExplosiveMine": "",
+"Mine": "",
+"Player": "",
+"StunMine": "",
+"Torpedo": ""
+}
+
 [application]
 
 config/name="Silent Running"

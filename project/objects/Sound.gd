@@ -11,6 +11,7 @@ export var size : float = 10.0
 func start():
 	if audio.stream:
 		audio.play()
+		duration = audio.stream.get_length()
 	tween.interpolate_property(self, "scale", Vector2(1.0, 1.0), Vector2(size, size), duration)
 	tween.interpolate_property(self, "modulate", Color.white, Color(1, 1, 1, 0), duration)
 	tween.start()

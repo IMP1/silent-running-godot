@@ -1,13 +1,11 @@
 extends "res://objects/Mine.gd"
+class_name StunMine
 
-var ready = false
-
-func start():
-	yield(get_tree().create_timer(1.0), "timeout")
-	ready = true
+func activate():
+	game_scene.rpc("add_sound", position, "stun", 3.0)
 
 func _on_body_entered(body: Node):
-	if not ready:
+	if not active:
 		return
 	if body.is_in_group("Player"):
 		body.rpc("stun")

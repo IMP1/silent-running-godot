@@ -32,3 +32,5 @@ texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Fade = SubResource( 1 )
+
+[node name="DropTween" type="Tween" parent="."]

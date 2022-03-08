@@ -23,15 +23,16 @@ Godot multiplayer game
   - [X] Add mines for distraction + destruction
   - [X] Add a title screen
   - [X] Add credits
-  - [ ] Add better multiplayer (player names)
+  - [ ] Add better multiplayer (player names, lobby)
   - [X] Make a couple of hand-made maps (each with starting location nodes that are selected at random)
   - [ ] Sounds being visually fainter the further away they are
+  - [X] Mines being lowered from the sub (small animation/tween that moves them down and then activates them)
 
 ## Known Bugs
 
   - [X] Health bars are all drawn on server game. Maybe don't use the network-master and instead use the player_id == this_player_id
   - [X] Enemy ships are drawn as visibly as your own
-  - [ ] If travelling down, your own torpedo can hit you
+  - [X] If travelling down, your own torpedo can hit you
   - [ ] Sounds travel through surfaces and so you can see the backs as well
         TRY having the shaders *not* have a BackBuffer thing and see what that does
   - [ ] You can faintly make out objects and enemies
@@ -60,6 +61,10 @@ https://freesound.org/people/Speedenza/sounds/222580/
 Stun Sound
 AnthonyChan0
 https://freesound.org/people/AnthonyChan0/sounds/264779/
+
+Clunk Sound
+BMacZero
+https://freesound.org/people/BMacZero/sounds/94130/
 
 Font
 Vernon Adams

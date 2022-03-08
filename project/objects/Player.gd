@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Player
 
 const MAX_SPEED = 2
 const ACCELLERATION = 1
@@ -6,7 +7,7 @@ const SPEED_EPSILON = 0.1
 const DECELLERATION = 0.8
 const BRAKE_DECELLERATION_FACTOR = 20
 const TORPEDO_OFFSET = Vector2(0, 20)
-const MINE_OFFSET = Vector2(0, 32)
+const MINE_OFFSET = Vector2(0, 16)
 const PING_OFFSET = 40
 const IMPACT_BOUNCE = 0.3
 const BASE_IMPACT_DAMAGE = 40
@@ -65,15 +66,20 @@ func move_submarine(delta: float):
 	if velocity != Vector2.ZERO:
 		var collision : KinematicCollision2D = move_and_collide(velocity)
 		if collision and not collision.collider.is_in_group("Ping"):
-			if collision.collider.is_in_group("Torpdeo"):
-				rpc("damage", collision.collider.DAMAGE)
-				collision.collider.explode()
-			elif collision.collider.is_in_group("ExplosiveMine"):
-				rpc("damage", collision.collider.DAMAGE)
-				collision.collider.explode()
-			elif collision.collider.is_in_group("Mine"):
-				rpc("damage", BASE_IMPACT_DAMAGE / 2)
-				collision.collider.queue_free()
+			if collision.collider is Torpedo:
+				if collision.collider.armed:
+					rpc("damage", collision.collider.DAMAGE)
+					collision.collider.explode()
+			elif collision.collider is ExplosiveMine:
+				if collision.collider.active:
+					rpc("damage", collision.collider.DAMAGE)
+					collision.collider.explode()
+					velocity *= IMPACT_BOUNCE
+			elif collision.collider is Mine:
+				if collision.collider.active:
+					rpc("damage", BASE_IMPACT_DAMAGE / 2)
+					collision.collider.queue_free()
+					velocity *= IMPACT_BOUNCE
 			else:
 				# TODO: If the collider is also damageable/destroyable then do that
 				velocity = velocity.bounce(collision.normal) * IMPACT_BOUNCE
