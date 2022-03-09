@@ -12,9 +12,9 @@ const PING_OFFSET = 40
 const IMPACT_BOUNCE = 0.3
 const BASE_IMPACT_DAMAGE = 40
 
-export(Color) var passive_stealth = Color(1.0, 1.0, 1.0)
-export(Color) var active_stealth = Color(0.0, 0.0, 0.0)
-export(Color) var remote_stealth = Color("#212121")
+export(Color) var passive_stealth = Constants.COLOUR_VISIBLE
+export(Color) var active_stealth = Constants.COLOUR_STEALTH
+export(Color) var remote_stealth = Constants.COLOUR_BACKGROUND
 export(int) var max_health : int = 100
 
 var silent_running = false

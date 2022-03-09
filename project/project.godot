@@ -58,6 +58,7 @@ config/icon="res://icon.png"
 
 Network="*res://Networking.gd"
 Screenshake="*res://Screenshake.gd"
+Constants="*res://Constants.gd"
 
 [input]
 

@@ -12,6 +12,15 @@ uniform vec4 ping_colour : hint_color = vec4(1.0);
 
 const float EMPTY = 32.0 / 255.0;
 
+bool is_solid(vec2 uv, sampler2D tex) {
+	bool solid = false;
+	vec4 background = textureLod(tex, uv, 0.0);
+	if (background.r >= EMPTY) {
+		solid = true;
+	}
+	return solid;
+}
+
 bool is_edge(vec2 uv, vec2 pixel_size, sampler2D tex) {
 	vec4 background = textureLod(tex, uv, 0.0);
 	vec4 neighbour_top = textureLod(tex, uv + vec2(0, -pixel_size.y), 0.0);
@@ -39,15 +48,6 @@ bool is_occluded() {
 	//       This might involve changing the shader completely and having
 	//       an origin that each pixel works from to see if there's already
 	//       an edge in between.
-}
-
-bool is_solid(vec2 uv, sampler2D tex) {
-	bool solid = false;
-	vec4 background = textureLod(tex, uv, 0.0);
-	if (background.r >= EMPTY) {
-		solid = true;
-	}
-	return solid;
 }
 
 void fragment() {
