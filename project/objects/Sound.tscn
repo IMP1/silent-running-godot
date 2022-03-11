@@ -9,6 +9,7 @@
 code = "shader_type canvas_item;
 
 uniform vec4 ping_colour : hint_color = vec4(1.0);
+uniform sampler2D world;
 
 const float EMPTY = 32.0 / 255.0;
 

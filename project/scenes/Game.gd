@@ -78,7 +78,7 @@ remotesync func add_sound(position, sound_source = "ping", size = 10.0):
 		sound.audio.stream = null
 	sound.size = size
 	sound.position = position
-	sound.start()
+	sound.start($Viewport)
 
 remotesync func add_ping(position, direction):
 	var ping = load("res://objects/Ping.tscn").instance()
