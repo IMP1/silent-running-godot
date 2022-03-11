@@ -4,13 +4,20 @@ var alive_players : int = 0
 var this_player_id : int = 0
 
 onready var gui = $CanvasLayer/GUI
-onready var starting_position = $LevelContainer/Level/StartingPositions
+onready var torpedo_list = $Torpedos
+onready var mine_list = $Mines
 onready var player_list = $Players
+onready var sound_list = $Sounds
+onready var ping_list = $Pings
+onready var level
+onready var starting_positions
 
 func setup(game_settings):
+	level = $LevelContainer.get_child(0)
+	starting_positions = level.get_node("StartingPositions")
 	# TODO: Choose random level from levels folder
 	var player_positions = []
-	for position in starting_position.get_children():
+	for position in starting_positions.get_children():
 		player_positions.append(position.position)
 	randomize()
 	player_positions.shuffle()
@@ -64,14 +71,14 @@ func _input(event):
 
 remotesync func add_torpedo(position, direction):
 	var torpedo = load("res://objects/Torpedo.tscn").instance()
-	$Torpedos.add_child(torpedo)
+	torpedo_list.add_child(torpedo)
 	torpedo.game_scene = self
 	torpedo.position = position
 	torpedo.direction = direction
 
 remotesync func add_sound(position, sound_source = "ping", size = 10.0):
 	var sound = load("res://objects/Sound.tscn").instance()
-	$Sounds.add_child(sound)
+	sound_list.add_child(sound)
 	if sound_source:
 		sound.audio.stream = load("res://audio/" + sound_source + ".ogg")
 	else:
@@ -82,7 +89,7 @@ remotesync func add_sound(position, sound_source = "ping", size = 10.0):
 
 remotesync func add_ping(position, direction):
 	var ping = load("res://objects/Ping.tscn").instance()
-	$Pings.add_child(ping)
+	ping_list.add_child(ping)
 	ping.game_scene = self
 	ping.position = position
 	ping.direction = direction
@@ -90,7 +97,7 @@ remotesync func add_ping(position, direction):
 
 remotesync func add_mine(position, mine_type):
 	var mine = load("res://objects/" + mine_type + ".tscn").instance()
-	$Mines.add_child(mine)
+	mine_list.add_child(mine)
 	mine.game_scene = self
 	mine.position = position
 	mine.start()
@@ -108,13 +115,13 @@ remotesync func player_died(player_id):
 		get_player(player_id).find_node("Sprite").modulate = Constants.COLOUR_DEATH
 
 func hide_map():
-	for body in $LevelContainer/Level/Rocks.get_children():
+	for body in level.get_node("Rocks").get_children():
 		for polygon in body.get_children():
 			if polygon is Polygon2D:
 				polygon.color = Constants.COLOUR_BACKGROUND
 
 func reveal_map():
-	for body in $LevelContainer/Level/Rocks.get_children():
+	for body in level.get_node("Rocks").get_children():
 		for polygon in body.get_children():
 			if polygon is Polygon2D:
 				polygon.color = Constants.COLOUR_VISIBLE
