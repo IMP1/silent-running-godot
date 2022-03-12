@@ -27,6 +27,8 @@ Godot multiplayer game
   - [X] Make a couple of hand-made maps (each with starting location nodes that are selected at random)
   - [ ] Sounds being visually fainter the further away they are
   - [X] Mines being lowered from the sub (small animation/tween that moves them down and then activates them)
+  - [ ] Add a check in the sound shader to make sure that 'solid' is not ping_colour (` && background != ping_colour`)
+  - [X] Fade out sounds after they've grown
 
 ## Known Bugs
 
@@ -34,9 +36,7 @@ Godot multiplayer game
   - [X] Enemy ships are drawn as visibly as your own
   - [X] If travelling down, your own torpedo can hit you
   - [ ] Sounds travel through surfaces and so you can see the backs as well
-        TRY having the shaders *not* have a BackBuffer thing and see what that does
-  - [ ] You can faintly make out objects and enemies
-        TRY having objects be background colour + half opacity (and check if opacity == half)
+  - [X] You can faintly make out objects and enemies
   - [X] Initial values of audio sliders are always 100% and don't represent initial audio bus volumes
 
 ## Ideas
