@@ -4,16 +4,18 @@ var alive_players : int = 0
 var this_player_id : int = 0
 
 onready var gui = $CanvasLayer/GUI
-onready var torpedo_list = $Torpedos
-onready var mine_list = $Mines
-onready var player_list = $Players
-onready var sound_list = $Sounds
-onready var ping_list = $Pings
+onready var world = $World
+onready var torpedo_list = world.get_node("Torpedos")
+onready var mine_list = world.get_node("Mines")
+onready var player_list = world.get_node("Players")
+onready var ping_list = world.get_node("Pings")
+onready var sound_list = world.get_node("Sounds")
 onready var level
 onready var starting_positions
+onready var player_camera: Camera2D
 
 func setup(game_settings):
-	level = $LevelContainer.get_child(0)
+	level = world.get_node("LevelContainer").get_child(0)
 	starting_positions = level.get_node("StartingPositions")
 	# TODO: Choose random level from levels folder
 	var player_positions = []
@@ -37,6 +39,7 @@ func setup(game_settings):
 			player_object.add_child(camera)
 			camera.current = true
 			Screenshake.camera = camera
+			player_camera = camera
 		else:
 			player_object.get_node("HUD/GUI").visible = false
 			player_object.get_node("Sprite").modulate = player_object.remote_stealth
@@ -77,15 +80,15 @@ remotesync func add_torpedo(position, direction):
 	torpedo.direction = direction
 
 remotesync func add_sound(position, sound_source = "ping", size = 10.0):
-	var sound = load("res://objects/Sound.tscn").instance()
+	var sound: Node2D = load("res://objects/Sound.tscn").instance()
 	sound_list.add_child(sound)
 	if sound_source:
 		sound.audio.stream = load("res://audio/" + sound_source + ".ogg")
 	else:
 		sound.audio.stream = null
 	sound.size = size
-	sound.position = position
-	sound.start($Viewport)
+	sound.global_position = position
+	sound.start()
 
 remotesync func add_ping(position, direction):
 	var ping = load("res://objects/Ping.tscn").instance()
@@ -115,6 +118,7 @@ remotesync func player_died(player_id):
 		get_player(player_id).find_node("Sprite").modulate = Constants.COLOUR_DEATH
 
 func hide_map():
+	$Background/ColorRect.color = Constants.COLOUR_BACKGROUND
 	for body in level.get_node("Rocks").get_children():
 		for polygon in body.get_children():
 			if polygon is Polygon2D:

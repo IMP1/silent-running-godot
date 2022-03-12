@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://objects/Sound.gd" type="Script" id=1]
 [ext_resource path="res://audio/ping.ogg" type="AudioStream" id=2]
+[ext_resource path="res://sprites/sound_circle.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -9,9 +10,8 @@
 code = "shader_type canvas_item;
 
 uniform vec4 ping_colour : hint_color = vec4(1.0);
-uniform sampler2D world;
 
-const float EMPTY = 32.0 / 255.0;
+const float EMPTY = 16.0 / 255.0;
 
 bool is_solid(vec2 uv, sampler2D tex) {
 	bool solid = false;
@@ -123,6 +123,11 @@ collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 3 )
+texture_scale = 0.1
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2

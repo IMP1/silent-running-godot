@@ -180,4 +180,4 @@ func unstun():
 	$HUD/StunShader.visible = false
 
 func _on_PassivePingTimer():
-	game_scene.rpc("add_sound", position, null, 15.0)
+	game_scene.rpc("add_sound", position, null, 25.0)
