@@ -16,37 +16,39 @@ Godot multiplayer game
   - [X] Add passive sonar
   - [X] Add active sonar
   - [X] Release a build for testing
+  - [X] Add mines for distraction + destruction
+  - [X] Add a title screen
+  - [X] Add credits
+  - [X] Make a couple of hand-made maps (each with starting location nodes that are selected at random)
+  - [X] Mines being lowered from the sub (small animation/tween that moves them down and then activates them)
+  - [X] Fade out sounds after they've grown
   - [ ] Settings
       - [X] Volume Controls
       - [ ] 
   - [ ] Win + Loss condition
-  - [X] Add mines for distraction + destruction
-  - [X] Add a title screen
-  - [X] Add credits
   - [ ] Add better multiplayer (player names, lobby)
-  - [X] Make a couple of hand-made maps (each with starting location nodes that are selected at random)
-  - [ ] Sounds being visually fainter the further away they are
-  - [X] Mines being lowered from the sub (small animation/tween that moves them down and then activates them)
   - [ ] Add a check in the sound shader to make sure that 'solid' is not ping_colour (` && background != ping_colour`)
-  - [X] Fade out sounds after they've grown
+  - [ ] Sounds being visually fainter the further away they are
 
 ## Known Bugs
 
   - [X] Health bars are all drawn on server game. Maybe don't use the network-master and instead use the player_id == this_player_id
   - [X] Enemy ships are drawn as visibly as your own
   - [X] If travelling down, your own torpedo can hit you
-  - [ ] Sounds travel through surfaces and so you can see the backs as well
   - [X] You can faintly make out objects and enemies
   - [X] Initial values of audio sliders are always 100% and don't represent initial audio bus volumes
+  - [ ] Sounds travel through surfaces and so you can see the backs as well
+        (Try looking at Light Occluders)
+  - [ ] Sounds interact with each other and so you get weird borders.
 
 ## Ideas
 
-  - [ ] Sea life? Non-threats that are moving and might make sounds?
+  - [ ] Sea life? Non-threats that are moving and might make sounds
   - [ ] Terrain that the submarine can traverse through, but pings bounce off (seaweed?)
-  - [ ] Destructible Terrain?
+  - [ ] Destructible Terrain
   - [ ] Team play?
-  - [ ] Missions? (escort, treasure-hunt, etc.)
-  - [ ] Managing ship in some way (hull pressure, crew sanity, etc.)
+  - [-] Managing ship in some way (hull pressure, crew sanity, etc.)
+  - [-] Missions? (escort, treasure-hunt, etc.)
 
 ## Credits
 
