@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/deeper-into-the-void.ogg-9438c4de5fc544b404a5449b1f80d88d.oggstr"
+
+[deps]
+
+source_file="res://audio/deeper-into-the-void.ogg"
+dest_files=[ "res://.import/deeper-into-the-void.ogg-9438c4de5fc544b404a5449b1f80d88d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

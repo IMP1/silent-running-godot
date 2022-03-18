@@ -295,6 +295,8 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 120, 0 )
 value = 100.0
 
+[node name="MusicTimer" type="Timer" parent="."]
+
 [connection signal="pressed" from="CanvasLayer/Menu/Buttons/Resume" to="CanvasLayer/Menu" method="_on_Resume"]
 [connection signal="pressed" from="CanvasLayer/Menu/Buttons/Quit" to="CanvasLayer/Menu" method="_on_Quit"]
 [connection signal="value_changed" from="CanvasLayer/Menu/Settings/MasterVolume/Slider" to="CanvasLayer/Menu" method="_on_MasterVolume_changed"]

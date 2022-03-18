@@ -1,9 +1,15 @@
 extends Node2D
 
-const BACKGROUND_MUSIC = preload("res://audio/cinematic-space-drone.ogg")
+const BACKGROUND_MUSIC_TRACKS = [
+	preload("res://audio/cinematic-space-drone.ogg"),
+	preload("res://audio/deeper-into-the-void.ogg"),
+	preload("res://audio/caves-of-dawn.ogg"),
+]
+const MUSIC_CROSS_FADE_TIME = 2.0
 
 var alive_players : int = 0
 var this_player_id : int = 0
+var music_rng = RandomNumberGenerator.new()
 
 onready var main = $"/root/Main"
 onready var gui = $CanvasLayer/GUI
@@ -16,14 +22,24 @@ onready var sound_list = world.get_node("Sounds")
 onready var level
 onready var starting_positions
 onready var player_camera: Camera2D
+onready var music_timer: Timer = $MusicTimer
 
 func _ready():
-	main.music_manager.cross_fade_to(BACKGROUND_MUSIC, 1.0)
+	music_rng.randomize()
+	music_timer.connect("timeout", self, "_next_background_music")
+	_next_background_music()
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	for placeholder_player in player_list.get_children():
 		player_list.remove_child(placeholder_player)
 	$CanvasLayer/Menu.visible = false
+
+func _next_background_music():
+	var i = music_rng.randi_range(0, BACKGROUND_MUSIC_TRACKS.size() - 1)
+	var next_track: AudioStream = BACKGROUND_MUSIC_TRACKS[i]
+	main.music_manager.cross_fade_to(next_track, MUSIC_CROSS_FADE_TIME)
+	var length = next_track.get_length()
+	music_timer.start(length - MUSIC_CROSS_FADE_TIME)
 
 func setup(game_settings):
 	level = load("res://levels/" + str(game_settings["level"]) + ".tscn").instance()

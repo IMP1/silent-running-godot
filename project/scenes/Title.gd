@@ -2,7 +2,7 @@ extends Control
 
 onready var main = $"/root/Main"
 
-const BACKGROUND_MUSIC = preload("res://audio/cinematic-space-drone.ogg")
+const BACKGROUND_MUSIC = preload("res://audio/mystique.ogg")
 
 func _ready():
 	yield(get_tree(), "idle_frame")
