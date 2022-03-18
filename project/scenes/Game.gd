@@ -32,6 +32,7 @@ func _ready():
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
 	for placeholder_player in player_list.get_children():
 		player_list.remove_child(placeholder_player)
+	$Background/ColorRect.color = Constants.COLOUR_BACKGROUND
 	$CanvasLayer/Menu.visible = false
 
 func _next_background_music():
