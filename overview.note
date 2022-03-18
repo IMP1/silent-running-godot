@@ -22,11 +22,11 @@ Godot multiplayer game
   - [X] Make a couple of hand-made maps (each with starting location nodes that are selected at random)
   - [X] Mines being lowered from the sub (small animation/tween that moves them down and then activates them)
   - [X] Fade out sounds after they've grown
+  - [X] Add better multiplayer (player names, lobby)
   - [ ] Settings
       - [X] Volume Controls
       - [ ] 
   - [ ] Win + Loss condition 
-  - [ ] Add better multiplayer (player names, lobby) !!!
   - [ ] Add a check in the sound shader to make sure that 'solid' is not ping_colour (` && background != ping_colour`)
   - [ ] Sounds being visually fainter the further away they are
   - [ ] A chat function? For kills and disconnections, and also for chatting.
@@ -39,10 +39,10 @@ Godot multiplayer game
   - [X] If travelling down, your own torpedo can hit you
   - [X] You can faintly make out objects and enemies
   - [X] Initial values of audio sliders are always 100% and don't represent initial audio bus volumes
+  - [X] When going back from Join Game screen, it doesn't actually disconnect from the game
   - [ ] Sounds travel through surfaces and so you can see the backs as well
         (Try looking at Light Occluders)
-  - [ ] Sounds interact with each other and so you get weird borders.
-  - [ ] When going back from Join Game screen, it doesn't actually disconnect from the game !!!
+  - [ ] Sounds interact with each other and so you get weird borders
 
 ## Ideas
 
