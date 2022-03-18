@@ -25,10 +25,12 @@ Godot multiplayer game
   - [ ] Settings
       - [X] Volume Controls
       - [ ] 
-  - [ ] Win + Loss condition
-  - [ ] Add better multiplayer (player names, lobby)
+  - [ ] Win + Loss condition 
+  - [ ] Add better multiplayer (player names, lobby) !!!
   - [ ] Add a check in the sound shader to make sure that 'solid' is not ping_colour (` && background != ping_colour`)
   - [ ] Sounds being visually fainter the further away they are
+  - [ ] A chat function? For kills and disconnections, and also for chatting.
+
 
 ## Known Bugs
 
@@ -40,6 +42,7 @@ Godot multiplayer game
   - [ ] Sounds travel through surfaces and so you can see the backs as well
         (Try looking at Light Occluders)
   - [ ] Sounds interact with each other and so you get weird borders.
+  - [ ] When going back from Join Game screen, it doesn't actually disconnect from the game !!!
 
 ## Ideas
 
@@ -104,3 +107,7 @@ https://www.istockphoto.com/vector/torpedoes-gm518737764-90207401
 Background Music: Cinematic Space Drone
 ZakharValaha
 https://pixabay.com/music/ambient-cinematic-space-drone-10623/
+
+Godot
+
+https://godotengine.org/

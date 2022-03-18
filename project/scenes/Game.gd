@@ -63,6 +63,9 @@ func _server_disconnected():
 	gui.find_node("GameStatus").text = "Connection Lost"
 
 func _player_disconnected(id):
+	# TODO: Inform the game somehow
+	#       Show text in GameStatus (and fade out after a bit?)
+	#       Have a chat function and show it in there?
 	print("Disconnect!")
 	print(id)
 	print("\n")
