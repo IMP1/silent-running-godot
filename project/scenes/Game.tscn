@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fonts/CutiveMono-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=2]
-[ext_resource path="res://audio/cinematic-space-drone.ogg" type="AudioStream" id=3]
 [ext_resource path="res://scenes/GameMenu.gd" type="Script" id=4]
 [ext_resource path="res://levels/1.tscn" type="PackedScene" id=5]
 
@@ -37,11 +36,6 @@ color = Color( 0.129412, 0.129412, 0.129412, 1 )
 [node name="Sounds" type="Node2D" parent="World"]
 
 [node name="Pings" type="Node2D" parent="World"]
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-autoplay = true
-bus = "Music"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

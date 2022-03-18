@@ -1,8 +1,11 @@
 extends Node2D
 
+const BACKGROUND_MUSIC = preload("res://audio/cinematic-space-drone.ogg")
+
 var alive_players : int = 0
 var this_player_id : int = 0
 
+onready var main = $"/root/Main"
 onready var gui = $CanvasLayer/GUI
 onready var world = $World
 onready var torpedo_list = world.get_node("Torpedos")
@@ -14,10 +17,18 @@ onready var level
 onready var starting_positions
 onready var player_camera: Camera2D
 
+func _ready():
+	main.music_manager.cross_fade_to(BACKGROUND_MUSIC, 1.0)
+	get_tree().connect("server_disconnected", self, "_server_disconnected")
+	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+	for placeholder_player in player_list.get_children():
+		player_list.remove_child(placeholder_player)
+	$CanvasLayer/Menu.visible = false
+
 func setup(game_settings):
-	level = world.get_node("LevelContainer").get_child(0)
+	level = load("res://levels/" + str(game_settings["level"]) + ".tscn").instance()
+	world.get_node("LevelContainer").add_child(level)
 	starting_positions = level.get_node("StartingPositions")
-	# TODO: Choose random level from levels folder
 	var player_positions = []
 	for position in starting_positions.get_children():
 		player_positions.append(position.position)
@@ -47,20 +58,13 @@ func setup(game_settings):
 	alive_players = player_ids.size()
 	hide_map()
 
-func _ready():
-	get_tree().connect("server_disconnected", self, "_server_disconnected")
-	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
-	for placeholder_player in player_list.get_children():
-		player_list.remove_child(placeholder_player)
-	$CanvasLayer/Menu.visible = false
-
 func _server_disconnected():
 	print("Lost server connection!\n")
 	gui.find_node("GameStatus").text = "Connection Lost"
 
-func _player_disconnected(args):
+func _player_disconnected(id):
 	print("Disconnect!")
-	print(args)
+	print(id)
 	print("\n")
 
 func get_player(player_id):
