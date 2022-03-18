@@ -1,5 +1,7 @@
 extends Control
 
+onready var main = $"/root/Main"
+
 func _ready():
 	visible = false
 	var master_volume = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
@@ -16,8 +18,9 @@ func _on_Resume():
 	visible = false
 
 func _on_Quit():
+	Screenshake.stop()
+	main.transition_scene("res://scenes/Title.tscn")
 	# TODO: Close game. Disconnect from server? Back to Lobby
-	get_tree().quit(0)
 
 func _on_MasterVolume_changed(value):
 	var db = linear2db(value / 100)
