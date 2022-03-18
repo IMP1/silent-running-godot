@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Player
 
-const MAX_SPEED = 2
+const MAX_SPEED = 1
 const ACCELLERATION = 1
 const SPEED_EPSILON = 0.1
 const DECELLERATION = 0.8
@@ -77,7 +77,7 @@ func move_submarine(delta: float):
 					velocity *= IMPACT_BOUNCE
 			elif collision.collider is Mine:
 				if collision.collider.active:
-					rpc("damage", BASE_IMPACT_DAMAGE / 2)
+					rpc("damage", BASE_IMPACT_DAMAGE / 8)
 					collision.collider.queue_free()
 					velocity *= IMPACT_BOUNCE
 			else:
