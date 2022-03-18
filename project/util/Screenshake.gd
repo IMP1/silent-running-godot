@@ -5,6 +5,15 @@ var shakes: Dictionary = {}
 
 onready var camera: Camera2D
 
+func stop() -> void:
+	_clear_screen_shake()
+	camera = null
+
+func _clear_screen_shake() -> void:
+	rumble_strength = Vector2.ZERO
+	for child in get_children():
+		_remove_screen_shake(child)
+
 func add_screen_rumble(velocity: Vector2) -> void:
 	rumble_strength += velocity
 
