@@ -33,8 +33,16 @@ func join_server(ip_address) -> void:
 	get_tree().set_network_peer(client)
 
 func disconnect_server() -> void:
+	if not get_tree().network_peer:
+		return
 	for peer in get_tree().get_network_connected_peers():
 		get_tree().disconnect_network_peer(peer)
+	get_tree().network_peer.close_connection()
+	get_tree().network_peer = null
+
+func disconnect_client() -> void:
+	if not get_tree().network_peer:
+		return
 	get_tree().network_peer.close_connection()
 	get_tree().network_peer = null
 

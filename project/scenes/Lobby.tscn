@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/Multiplayer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HostServer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Lobby.gd" type="Script" id=3]
 [ext_resource path="res://scenes/JoinServer.gd" type="Script" id=4]
 [ext_resource path="res://fonts/CutiveMono-Regular.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=8]
 
 [sub_resource type="DynamicFont" id=3]
 size = 24
@@ -16,6 +18,9 @@ font_data = ExtResource( 5 )
 [sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 5 )
 
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 5 )
+
 [sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 5 )
 
@@ -25,15 +30,15 @@ font_data = ExtResource( 5 )
 [sub_resource type="Theme" id=6]
 Label/fonts/font = SubResource( 5 )
 
-[node name="Lobby" type="Control"]
+[node name="Lobby" type="TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_styles/panel = SubResource( 8 )
+tabs_visible = false
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Multiplayer" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -77,6 +82,9 @@ __meta__ = {
 margin_right = 122.0
 margin_bottom = 25.0
 grow_horizontal = 2
+hint_tooltip = "Create a game, and have friends connect to your computer to play online.
+
+[This usually requires you to have port-forwarding setup]"
 custom_fonts/font = SubResource( 2 )
 text = "Host Server"
 
@@ -85,6 +93,7 @@ margin_top = 49.0
 margin_right = 122.0
 margin_bottom = 74.0
 grow_horizontal = 2
+hint_tooltip = "Connect to a friend's game to play with them."
 custom_fonts/font = SubResource( 2 )
 text = "Join Server"
 
@@ -95,11 +104,9 @@ margin_left = 20.0
 margin_top = -40.0
 margin_right = 12.0
 margin_bottom = -20.0
+hint_tooltip = "Go back to the title screen"
 custom_fonts/font = SubResource( 2 )
 text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HostServer" type="Control" parent="."]
 visible = false
@@ -122,15 +129,12 @@ custom_fonts/font = SubResource( 3 )
 text = "Host Server"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="IP" type="HBoxContainer" parent="HostServer"]
 anchor_left = 0.5
-anchor_top = 0.3
+anchor_top = 0.25
 anchor_right = 0.5
-anchor_bottom = 0.3
+anchor_bottom = 0.25
 margin_left = -38.5
 margin_top = -20.0
 margin_right = 38.5
@@ -167,9 +171,9 @@ __meta__ = {
 
 [node name="Port" type="HBoxContainer" parent="HostServer"]
 anchor_left = 0.5
-anchor_top = 0.3
+anchor_top = 0.25
 anchor_right = 0.5
-anchor_bottom = 0.3
+anchor_bottom = 0.25
 margin_left = -38.5
 margin_top = 20.0
 margin_right = 38.5
@@ -205,15 +209,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Clients" type="Control" parent="HostServer"]
-anchor_top = 0.6
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="UserName" type="HBoxContainer" parent="HostServer"]
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 0.25
+margin_left = -128.0
+margin_top = 60.0
+margin_right = 128.0
+margin_bottom = 100.0
+grow_horizontal = 2
+alignment = 1
 
-[node name="Title" type="Label" parent="HostServer/Clients"]
+[node name="Label" type="LineEdit" parent="HostServer/UserName"]
+margin_right = 256.0
+margin_bottom = 40.0
+grow_horizontal = 2
+rect_min_size = Vector2( 256, 0 )
+custom_fonts/font = SubResource( 4 )
+align = 1
+placeholder_text = "User Name"
+
+[node name="Players" type="Control" parent="HostServer"]
+anchor_top = 0.45
+anchor_right = 1.0
+anchor_bottom = 0.9
+
+[node name="Title" type="Label" parent="HostServer/Players"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -58.0
@@ -226,16 +248,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="List" type="VBoxContainer" parent="HostServer/Clients"]
+[node name="List" type="VBoxContainer" parent="HostServer/Players"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -20.0
 margin_top = 30.0
 margin_right = 20.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="Label" type="Label" parent="HostServer/Players/List"]
+margin_right = 50.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 9 )
+text = "(You)"
 
 [node name="StartGame" type="Button" parent="HostServer"]
 anchor_left = 0.5
@@ -266,7 +291,6 @@ __meta__ = {
 }
 
 [node name="JoinServer" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
@@ -286,11 +310,38 @@ custom_fonts/font = SubResource( 3 )
 text = "Join Server"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="IP" type="HBoxContainer" parent="JoinServer"]
+anchor_left = 0.5
+anchor_top = 0.7
+anchor_right = 0.5
+anchor_bottom = 0.7
+margin_left = -38.5
+margin_top = -20.0
+margin_right = 38.5
+margin_bottom = 20.0
+grow_horizontal = 2
+custom_constants/separation = 16
+alignment = 1
+
+[node name="IpAddress" type="LineEdit" parent="JoinServer/IP"]
+margin_right = 160.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 160, 0 )
+custom_fonts/font = SubResource( 7 )
+align = 2
+placeholder_text = "IP Address"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Connect" type="Button" parent="JoinServer/IP"]
+margin_left = 176.0
+margin_right = 228.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 2 )
+text = "Join"
+
+[node name="UserName" type="HBoxContainer" parent="JoinServer"]
 anchor_left = 0.5
 anchor_top = 0.6
 anchor_right = 0.5
@@ -306,20 +357,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="IpAddress" type="LineEdit" parent="JoinServer/IP"]
-margin_right = 160.0
+[node name="UserName" type="LineEdit" parent="JoinServer/UserName"]
+margin_right = 230.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 160, 0 )
+rect_min_size = Vector2( 230, 0 )
 custom_fonts/font = SubResource( 7 )
-align = 2
-placeholder_text = "IP Address"
-
-[node name="Connect" type="Button" parent="JoinServer/IP"]
-margin_left = 176.0
-margin_right = 228.0
-margin_bottom = 40.0
-custom_fonts/font = SubResource( 2 )
-text = "Join"
+align = 1
+placeholder_text = "User Name"
+caret_blink = true
+caret_blink_speed = 0.5
 
 [node name="CurrentState" type="Label" parent="JoinServer"]
 anchor_left = 0.5
@@ -332,9 +378,6 @@ margin_right = 20.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Back" type="Button" parent="JoinServer"]
 anchor_top = 1.0
