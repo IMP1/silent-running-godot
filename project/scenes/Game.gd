@@ -10,6 +10,7 @@ const MUSIC_CROSS_FADE_TIME = 2.0
 var alive_players : int = 0
 var this_player_id : int = 0
 var music_rng = RandomNumberGenerator.new()
+var map_revealed = false
 
 onready var main = $"/root/Main"
 onready var gui = $CanvasLayer/GUI
@@ -34,6 +35,8 @@ func _ready():
 		player_list.remove_child(placeholder_player)
 	$Background/ColorRect.color = Constants.COLOUR_BACKGROUND
 	$CanvasLayer/Menu.visible = false
+	$CanvasLayer/Options.visible = false
+	$CanvasLayer/Chat.visible = false
 
 func _next_background_music():
 	var i = music_rng.randi_range(0, BACKGROUND_MUSIC_TRACKS.size() - 1)
@@ -77,7 +80,7 @@ func setup(game_settings):
 
 func _server_disconnected():
 	print("Lost server connection!\n")
-	gui.find_node("GameStatus").text = "Connection Lost"
+	gui.get_node("GameStatus").text = "Connection Lost"
 
 func _player_disconnected(id):
 	# TODO: Inform the game somehow
@@ -88,7 +91,7 @@ func _player_disconnected(id):
 	print("\n")
 
 func get_player(player_id):
-	return player_list.find_node("Player " + str(player_id))
+	return player_list.get_node("Player " + str(player_id))
 
 func _input(event):
 	if event.is_action_pressed("open_menu"):
@@ -102,6 +105,8 @@ remotesync func add_torpedo(position, direction):
 	torpedo.game_scene = self
 	torpedo.position = position
 	torpedo.direction = direction
+	if map_revealed:
+		torpedo.get_node("Sprite").modulate = Constants.COLOUR_VISIBLE
 
 remotesync func add_sound(position, sound_source = "ping", size = 10.0):
 	var sound: Node2D = load("res://objects/Sound.tscn").instance()
@@ -128,18 +133,26 @@ remotesync func add_mine(position, mine_type):
 	mine.game_scene = self
 	mine.position = position
 	mine.start()
+	if map_revealed:
+		mine.get_node("Sprite").modulate = Constants.COLOUR_VISIBLE
 
 remotesync func player_died(player_id):
+	if get_player(player_id).dead:
+		return
 	alive_players -= 1
-	if alive_players == 1 and player_id != this_player_id:
-		gui.find_node("GameStatus").text = "You Win!"
-	elif alive_players <= 0:
-		gui.find_node("GameStatus").text = "Game Over"
-	if player_id == this_player_id:
+	if alive_players == 1 and player_id != this_player_id and get_player(this_player_id).health > 0:
+		gui.get_node("GameStatus").text = "You Win!"
 		reveal_map()
-		gui.find_node("GameStatus").text = "Game Over"
+	elif alive_players <= 0:
+		gui.get_node("GameStatus").text = "Game Over"
+		reveal_map()
+	
+	if player_id == this_player_id:
+		gui.get_node("GameStatus").text = "Game Over"
+		reveal_map()
 	elif get_player(this_player_id).health <= 0:
-		get_player(player_id).find_node("Sprite").modulate = Constants.COLOUR_DEATH
+		get_player(player_id).get_node("Sprite").visible = false
+	get_player(player_id).die()
 
 func hide_map():
 	$Background/ColorRect.color = Constants.COLOUR_BACKGROUND
@@ -154,6 +167,11 @@ func reveal_map():
 			if polygon is Polygon2D:
 				polygon.color = Constants.COLOUR_VISIBLE
 	for player in player_list.get_children():
-		player.find_node("Sprite").modulate = Constants.COLOUR_VISIBLE
+		player.get_node("Sprite").modulate = Constants.COLOUR_VISIBLE
 		if player.health <= 0:
-			player.find_node("Sprite").modulate = Constants.COLOUR_DEATH
+			player.get_node("Sprite").modulate = Constants.COLOUR_DEATH
+	for mine in mine_list.get_children():
+		mine.get_node("Sprite").modulate = Constants.COLOUR_VISIBLE
+	for torpedo in torpedo_list.get_children():
+		torpedo.get_node("Sprite").modulate = Constants.COLOUR_VISIBLE
+	map_revealed = true

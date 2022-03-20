@@ -7,5 +7,5 @@ func activate():
 func _on_body_entered(body: Node):
 	if not active:
 		return
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and not body.dead:
 		body.rpc("stun")

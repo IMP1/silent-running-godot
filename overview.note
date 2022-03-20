@@ -23,10 +23,11 @@ Godot multiplayer game
   - [X] Mines being lowered from the sub (small animation/tween that moves them down and then activates them)
   - [X] Fade out sounds after they've grown
   - [X] Add better multiplayer (player names, lobby)
+  - [X] Release a build
   - [ ] Settings
       - [X] Volume Controls
       - [ ] 
-  - [ ] Win + Loss condition 
+  - [X] Win + Loss condition 
   - [ ] Add a check in the sound shader to make sure that 'solid' is not ping_colour (` && background != ping_colour`)
   - [ ] Sounds being visually fainter the further away they are
   - [ ] A chat function? For kills and disconnections, and also for chatting.
@@ -43,13 +44,15 @@ Godot multiplayer game
   - [ ] Sounds travel through surfaces and so you can see the backs as well
         (Try looking at Light Occluders)
   - [ ] Sounds interact with each other and so you get weird borders
+  - [X] Game crashes on player death
+  - [ ] No blue outline on enemy subs when in a sound bubble? !!!
 
 ## Ideas
 
-  - [ ] Sea life? Non-threats that are moving and might make sounds
-  - [ ] Terrain that the submarine can traverse through, but pings bounce off (seaweed?)
+  - [ ] Terrain that the submarine can traverse through, but pings bounce off (seaweed?) !!!
   - [ ] Destructible Terrain
   - [ ] Team play?
+  - [ ] Sea life? Non-threats that are moving and might make sounds
   - [-] Managing ship in some way (hull pressure, crew sanity, etc.)
   - [-] Missions? (escort, treasure-hunt, etc.)
 

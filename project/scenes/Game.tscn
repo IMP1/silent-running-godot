@@ -50,9 +50,11 @@ __meta__ = {
 
 [node name="GameStatus" type="Label" parent="CanvasLayer/GUI"]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_top = 48.0
-margin_bottom = 64.0
+anchor_bottom = 0.5
+margin_top = -128.0
+margin_bottom = -112.0
 grow_horizontal = 2
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
@@ -294,6 +296,20 @@ margin_right = 221.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 120, 0 )
 value = 100.0
+
+[node name="Options" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Chat" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="MusicTimer" type="Timer" parent="."]
 

@@ -39,12 +39,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 scroll_horizontal_enabled = false
-scroll_vertical = 2680
 
 [node name="ScrollContents" type="Control" parent="ScrollContainer"]
-margin_top = -2680.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 3280.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 1024, 3280 )
@@ -562,9 +560,6 @@ margin_right = 42.0
 margin_bottom = -20.0
 custom_fonts/font = SubResource( 7 )
 text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="scroll_ended" from="ScrollContainer" to="." method="_on_scroll_ended"]
 [connection signal="scroll_started" from="ScrollContainer" to="." method="_on_scroll_started"]

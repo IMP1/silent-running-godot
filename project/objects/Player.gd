@@ -22,6 +22,7 @@ var velocity : Vector2 = Vector2.ZERO
 var direction : Vector2 = Vector2(1, 0)
 var health : int = max_health
 var stunned : bool = false
+var dead : bool = false
 var player_id : int = 0
 
 puppet var remote_velocity: Vector2 = Vector2.ZERO setget update_remote_velocity
@@ -99,6 +100,8 @@ func _unhandled_input(event):
 	if not is_network_master():
 		return
 	if stunned:
+		return
+	if dead:
 		return
 	if event.is_action_pressed("fire_torpedo") and $TorpedoTimer.time_left == 0:
 		game_scene.rpc("add_torpedo", position + TORPEDO_OFFSET, direction)
@@ -181,3 +184,16 @@ func unstun():
 
 func _on_PassivePingTimer():
 	game_scene.rpc("add_sound", position, null, 25.0)
+
+func die():
+	dead = true
+	toggle_silent_running(true)
+	set_collision_layer_bit(1, false)
+	set_collision_layer_bit(5, true)
+	set_collision_mask_bit(0, false) # Can move through walls with this
+	set_collision_mask_bit(1, false)
+	set_collision_mask_bit(2, false)
+	set_collision_mask_bit(3, false)
+	set_collision_mask_bit(4, false)
+	set_collision_mask_bit(5, false)
+	
