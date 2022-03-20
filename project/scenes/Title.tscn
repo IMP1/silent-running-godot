@@ -53,7 +53,6 @@ margin_top = 41.0
 margin_right = 122.0
 margin_bottom = 66.0
 custom_fonts/font = SubResource( 2 )
-disabled = true
 text = "Options"
 
 [node name="Credits" type="Button" parent="Options"]

@@ -12,7 +12,7 @@ func _on_Mutiplayer():
 	main.transition_scene("res://scenes/Lobby.tscn")
 
 func _on_Options():
-	pass # Replace with function body.
+	main.transition_scene("res://scenes/Options.tscn")
 
 func _on_Credits():
 	main.transition_scene("res://scenes/Credits.tscn")
