@@ -31,7 +31,7 @@ anchor_right = 1.0
 margin_top = 8.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 2 )
-text = "Volume"
+text = "VOLUME"
 align = 1
 
 [node name="Volumes" type="VBoxContainer" parent="Audio"]
@@ -45,57 +45,73 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Master" type="HBoxContainer" parent="Audio/Volumes"]
-margin_right = 192.0
+margin_right = 232.0
 margin_bottom = 19.0
 
 [node name="Label" type="Label" parent="Audio/Volumes/Master"]
-margin_right = 60.0
+margin_right = 100.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 60, 0 )
 custom_fonts/font = SubResource( 3 )
-text = "Master"
+text = "VOL_MASTER"
 
 [node name="Slider" type="HSlider" parent="Audio/Volumes/Master"]
-margin_left = 64.0
-margin_right = 192.0
+margin_left = 104.0
+margin_right = 232.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 128, 0 )
 
 [node name="Sounds" type="HBoxContainer" parent="Audio/Volumes"]
 margin_top = 23.0
-margin_right = 192.0
+margin_right = 232.0
 margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="Audio/Volumes/Sounds"]
-margin_right = 60.0
+margin_right = 100.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 60, 0 )
 custom_fonts/font = SubResource( 3 )
-text = "Sounds"
+text = "VOL_SOUNDS"
 
 [node name="Slider" type="HSlider" parent="Audio/Volumes/Sounds"]
-margin_left = 64.0
-margin_right = 192.0
+margin_left = 104.0
+margin_right = 232.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 128, 0 )
 
 [node name="Music" type="HBoxContainer" parent="Audio/Volumes"]
 margin_top = 46.0
-margin_right = 192.0
+margin_right = 232.0
 margin_bottom = 65.0
 
 [node name="Label" type="Label" parent="Audio/Volumes/Music"]
-margin_right = 60.0
+margin_right = 90.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 60, 0 )
 custom_fonts/font = SubResource( 3 )
-text = "Music"
+text = "VOL_MUSIC"
 
 [node name="Slider" type="HSlider" parent="Audio/Volumes/Music"]
-margin_left = 64.0
-margin_right = 192.0
+margin_left = 94.0
+margin_right = 222.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 128, 0 )
+
+[node name="Language" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 64.0
+margin_right = -118.0
+margin_bottom = -54.0
+
+[node name="Title" type="Label" parent="Language"]
+anchor_right = 1.0
+margin_top = 8.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 2 )
+text = "LANGUAGE"
+align = 1
 
 [node name="Back" type="Button" parent="."]
 anchor_top = 1.0
@@ -105,7 +121,7 @@ margin_top = -40.0
 margin_right = 42.0
 margin_bottom = -20.0
 custom_fonts/font = SubResource( 1 )
-text = "Back"
+text = "BACK"
 
 [connection signal="changed" from="Audio/Volumes/Master/Slider" to="." method="_on_MasterVolume_changed"]
 [connection signal="changed" from="Audio/Volumes/Sounds/Slider" to="." method="_on_SoundVolume_changed"]

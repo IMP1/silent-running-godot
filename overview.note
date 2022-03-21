@@ -24,10 +24,11 @@ Godot multiplayer game
   - [X] Fade out sounds after they've grown
   - [X] Add better multiplayer (player names, lobby)
   - [X] Release a build
+  - [X] Internationalise the game and localise it for English (UK)
+  - [X] Win + Loss condition 
   - [ ] Settings
       - [X] Volume Controls
-      - [ ] 
-  - [X] Win + Loss condition 
+      - [ ] Language
   - [ ] Add a check in the sound shader to make sure that 'solid' is not ping_colour (` && background != ping_colour`)
   - [ ] Sounds being visually fainter the further away they are
   - [ ] A chat function? For kills and disconnections, and also for chatting.
@@ -41,15 +42,16 @@ Godot multiplayer game
   - [X] You can faintly make out objects and enemies
   - [X] Initial values of audio sliders are always 100% and don't represent initial audio bus volumes
   - [X] When going back from Join Game screen, it doesn't actually disconnect from the game
+  - [X] Game crashes on player death
   - [ ] Sounds travel through surfaces and so you can see the backs as well
         (Try looking at Light Occluders)
   - [ ] Sounds interact with each other and so you get weird borders
-  - [X] Game crashes on player death
   - [ ] No blue outline on enemy subs when in a sound bubble? !!!
 
 ## Ideas
 
   - [ ] Terrain that the submarine can traverse through, but pings bounce off (seaweed?) !!!
+  - [ ] More passive sonar options: Big vs small radius
   - [ ] Destructible Terrain
   - [ ] Team play?
   - [ ] Sea life? Non-threats that are moving and might make sounds

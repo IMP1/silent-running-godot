@@ -80,7 +80,7 @@ func setup(game_settings):
 
 func _server_disconnected():
 	print("Lost server connection!\n")
-	gui.get_node("GameStatus").text = "Connection Lost"
+	gui.get_node("GameStatus").text = tr("MP_DISCONNECTED_2")
 
 func _player_disconnected(id):
 	# TODO: Inform the game somehow
@@ -141,14 +141,14 @@ remotesync func player_died(player_id):
 		return
 	alive_players -= 1
 	if alive_players == 1 and player_id != this_player_id and get_player(this_player_id).health > 0:
-		gui.get_node("GameStatus").text = "You Win!"
+		gui.get_node("GameStatus").text = tr("GAME_WIN")
 		reveal_map()
 	elif alive_players <= 0:
-		gui.get_node("GameStatus").text = "Game Over"
+		gui.get_node("GameStatus").text = tr("GAME_LOSE")
 		reveal_map()
 	
 	if player_id == this_player_id:
-		gui.get_node("GameStatus").text = "Game Over"
+		gui.get_node("GameStatus").text = tr("GAME_LOSE")
 		reveal_map()
 	elif get_player(this_player_id).health <= 0:
 		get_player(player_id).get_node("Sprite").visible = false

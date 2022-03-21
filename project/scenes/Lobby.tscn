@@ -38,7 +38,6 @@ tabs_visible = false
 script = ExtResource( 3 )
 
 [node name="Multiplayer" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -55,12 +54,9 @@ margin_right = 36.0
 margin_bottom = 14.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Multiplayer"
+text = "TITLE_MULTIPLAYER"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Buttons" type="VBoxContainer" parent="Multiplayer"]
 anchor_left = 0.5
@@ -79,23 +75,23 @@ __meta__ = {
 }
 
 [node name="HostServer" type="Button" parent="Multiplayer/Buttons"]
-margin_right = 122.0
+margin_right = 152.0
 margin_bottom = 25.0
 grow_horizontal = 2
 hint_tooltip = "Create a game, and have friends connect to your computer to play online.
 
 [This usually requires you to have port-forwarding setup]"
 custom_fonts/font = SubResource( 2 )
-text = "Host Server"
+text = "MP_HOST_SERVER"
 
 [node name="JoinServer" type="Button" parent="Multiplayer/Buttons"]
 margin_top = 49.0
-margin_right = 122.0
+margin_right = 152.0
 margin_bottom = 74.0
 grow_horizontal = 2
 hint_tooltip = "Connect to a friend's game to play with them."
 custom_fonts/font = SubResource( 2 )
-text = "Join Server"
+text = "MP_JOIN_SERVER"
 
 [node name="Back" type="Button" parent="Multiplayer"]
 anchor_top = 1.0
@@ -106,7 +102,7 @@ margin_right = 12.0
 margin_bottom = -20.0
 hint_tooltip = "Go back to the title screen"
 custom_fonts/font = SubResource( 2 )
-text = "Back"
+text = "BACK"
 
 [node name="HostServer" type="Control" parent="."]
 visible = false
@@ -126,7 +122,7 @@ margin_right = 42.5
 margin_bottom = 14.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Host Server"
+text = "MP_HOST_SERVER"
 align = 1
 valign = 1
 
@@ -147,11 +143,11 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="HostServer/IP"]
 margin_top = 10.0
-margin_right = 110.0
+margin_right = 130.0
 margin_bottom = 29.0
 grow_horizontal = 0
 custom_fonts/font = SubResource( 4 )
-text = "IP Address:"
+text = "MP_IP_ADDRESS"
 align = 2
 valign = 1
 __meta__ = {
@@ -159,9 +155,9 @@ __meta__ = {
 }
 
 [node name="IpAddress" type="Label" parent="HostServer/IP"]
-margin_left = 114.0
+margin_left = 134.0
 margin_top = 10.0
-margin_right = 114.0
+margin_right = 134.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 4 )
 valign = 1
@@ -185,13 +181,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="HostServer/Port"]
-margin_left = 11.0
+margin_left = 1.0
 margin_top = 10.0
-margin_right = 61.0
+margin_right = 71.0
 margin_bottom = 29.0
 grow_horizontal = 0
 custom_fonts/font = SubResource( 4 )
-text = "Port:"
+text = "MP_PORT"
 align = 2
 valign = 1
 __meta__ = {
@@ -199,9 +195,9 @@ __meta__ = {
 }
 
 [node name="Port" type="Label" parent="HostServer/Port"]
-margin_left = 65.0
+margin_left = 75.0
 margin_top = 10.0
-margin_right = 65.0
+margin_right = 75.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 4 )
 valign = 1
@@ -228,7 +224,7 @@ grow_horizontal = 2
 rect_min_size = Vector2( 256, 0 )
 custom_fonts/font = SubResource( 4 )
 align = 1
-placeholder_text = "User Name"
+placeholder_text = "MP_USERNAME"
 
 [node name="Players" type="Control" parent="HostServer"]
 anchor_top = 0.45
@@ -243,10 +239,7 @@ margin_right = 58.0
 margin_bottom = 14.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 4 )
-text = "Connected Clients"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "MP_CONNECTIONS"
 
 [node name="List" type="VBoxContainer" parent="HostServer/Players"]
 anchor_left = 0.5
@@ -257,10 +250,10 @@ margin_right = 20.0
 margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="HostServer/Players/List"]
-margin_right = 50.0
+margin_right = 60.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 9 )
-text = "(You)"
+text = "MP_YOU"
 
 [node name="StartGame" type="Button" parent="HostServer"]
 anchor_left = 0.5
@@ -272,25 +265,23 @@ margin_top = -20.0
 margin_right = 43.5
 grow_horizontal = 2
 custom_fonts/font = SubResource( 2 )
-text = "Start Game!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "MP_START_GAME"
 
 [node name="Back" type="Button" parent="HostServer"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
 margin_top = -40.0
-margin_right = 92.0
+margin_right = 12.0
 margin_bottom = -20.0
 custom_fonts/font = SubResource( 2 )
-text = "Back"
+text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="JoinServer" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
@@ -307,7 +298,7 @@ margin_right = 42.5
 margin_bottom = 14.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Join Server"
+text = "MP_JOIN_SERVER"
 align = 1
 valign = 1
 
@@ -330,16 +321,16 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 160, 0 )
 custom_fonts/font = SubResource( 7 )
 align = 2
-placeholder_text = "IP Address"
+placeholder_text = "MP_IP_ADDRESS_2"
 caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="Connect" type="Button" parent="JoinServer/IP"]
 margin_left = 176.0
-margin_right = 228.0
+margin_right = 258.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 2 )
-text = "Join"
+text = "MP_JOIN"
 
 [node name="UserName" type="HBoxContainer" parent="JoinServer"]
 anchor_left = 0.5
@@ -363,7 +354,7 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 230, 0 )
 custom_fonts/font = SubResource( 7 )
 align = 1
-placeholder_text = "User Name"
+placeholder_text = "MP_USERNAME"
 caret_blink = true
 caret_blink_speed = 0.5
 
@@ -388,10 +379,7 @@ margin_right = 42.0
 margin_bottom = -20.0
 theme = SubResource( 6 )
 custom_fonts/font = SubResource( 2 )
-text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "BACK"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 

@@ -43,31 +43,31 @@ __meta__ = {
 }
 
 [node name="Mutiplayer" type="Button" parent="Options"]
-margin_right = 122.0
+margin_right = 182.0
 margin_bottom = 25.0
 custom_fonts/font = SubResource( 2 )
-text = "Multiplayer"
+text = "TITLE_MULTIPLAYER"
 
 [node name="Options" type="Button" parent="Options"]
 margin_top = 41.0
-margin_right = 122.0
+margin_right = 182.0
 margin_bottom = 66.0
 custom_fonts/font = SubResource( 2 )
-text = "Options"
+text = "TITLE_OPTIONS"
 
 [node name="Credits" type="Button" parent="Options"]
 margin_top = 82.0
-margin_right = 122.0
+margin_right = 182.0
 margin_bottom = 107.0
 custom_fonts/font = SubResource( 2 )
-text = "Credits"
+text = "TITLE_CREDITS"
 
 [node name="Quit" type="Button" parent="Options"]
 margin_top = 123.0
-margin_right = 122.0
+margin_right = 182.0
 margin_bottom = 148.0
 custom_fonts/font = SubResource( 2 )
-text = "Quit"
+text = "QUIT"
 
 [node name="Title" type="Label" parent="."]
 anchor_right = 1.0
@@ -75,7 +75,7 @@ margin_top = 120.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "Silent Running"
+text = "TITLE"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -88,7 +88,7 @@ anchor_bottom = 1.0
 margin_top = -47.0
 custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
 custom_fonts/font = SubResource( 3 )
-text = "By Huw Taylor"
+text = "BY_AUTHOR"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

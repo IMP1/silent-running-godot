@@ -56,7 +56,7 @@ margin_right = 70.0
 margin_bottom = 19.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 1 )
-text = "Silent Running"
+text = "TITLE"
 align = 1
 
 [node name="Logo" type="TextureRect" parent="ScrollContainer/ScrollContents"]
@@ -83,59 +83,59 @@ grow_horizontal = 2
 custom_constants/separation = 96
 
 [node name="Graphics" type="Label" parent="ScrollContainer/ScrollContents/Credits"]
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 36.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 2 )
-text = "Graphics"
+text = "CREDITS_GRAPHICS"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 132.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 190.0
 custom_constants/separation = 240
 alignment = 1
 
 [node name="Submarine" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer"]
-margin_left = 202.0
-margin_right = 337.0
+margin_left = 112.0
+margin_right = 367.0
 margin_bottom = 58.0
 grow_horizontal = 2
 alignment = 1
 
 [node name="Asset" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer/Submarine"]
-margin_right = 135.0
+margin_right = 255.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Submarine"
+text = "CREDITS_SUBMARINE"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer/Submarine"]
 margin_top = 31.0
-margin_right = 135.0
+margin_right = 255.0
 margin_bottom = 58.0
 custom_fonts/font = SubResource( 3 )
 text = "Guru Deep"
 
 [node name="Torpedo" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer"]
-margin_left = 577.0
-margin_right = 697.0
+margin_left = 607.0
+margin_right = 832.0
 margin_bottom = 58.0
 alignment = 1
 
 [node name="Asset" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer/Torpedo"]
-margin_right = 120.0
+margin_right = 225.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Torpedo"
+text = "CREDITS_TORPEDO"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer/Torpedo"]
 margin_top = 31.0
-margin_right = 120.0
+margin_right = 225.0
 margin_bottom = 58.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
@@ -144,14 +144,14 @@ align = 1
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 286.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 344.0
 custom_constants/separation = 240
 alignment = 1
 
 [node name="Font" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer4"]
-margin_left = 180.0
-margin_right = 360.0
+margin_left = 172.0
+margin_right = 352.0
 margin_bottom = 58.0
 grow_horizontal = 2
 alignment = 1
@@ -161,7 +161,7 @@ margin_right = 180.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Font"
+text = "CREDITS_FONT"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer4/Font"]
@@ -172,22 +172,22 @@ custom_fonts/font = SubResource( 3 )
 text = "Vernon Adams"
 
 [node name="Mine" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer4"]
-margin_left = 600.0
-margin_right = 720.0
+margin_left = 592.0
+margin_right = 772.0
 margin_bottom = 58.0
 alignment = 1
 
 [node name="Asset" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer4/Mine"]
-margin_right = 120.0
+margin_right = 180.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Sea Mine"
+text = "CREDITS_MINE"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer4/Mine"]
 margin_top = 31.0
-margin_right = 120.0
+margin_right = 180.0
 margin_bottom = 58.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
@@ -196,7 +196,7 @@ align = 1
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 440.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 498.0
 custom_constants/separation = 120
 alignment = 1
@@ -212,7 +212,7 @@ margin_right = 225.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Skull"
+text = "CREDITS_SKULL"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer5/Skull"]
@@ -224,21 +224,21 @@ text = "Michael G Brown"
 
 [node name="Lightning Bolt" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer5"]
 margin_left = 345.0
-margin_right = 555.0
+margin_right = 600.0
 margin_bottom = 58.0
 alignment = 1
 
 [node name="Asset" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer5/Lightning Bolt"]
-margin_right = 210.0
+margin_right = 255.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Lightning Bolt"
+text = "CREDITS_LIGHTNING"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer5/Lightning Bolt"]
 margin_top = 31.0
-margin_right = 210.0
+margin_right = 255.0
 margin_bottom = 58.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
@@ -246,8 +246,8 @@ text = "il Capitano"
 align = 1
 
 [node name="Sound" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer5"]
-margin_left = 675.0
-margin_right = 900.0
+margin_left = 720.0
+margin_right = 945.0
 margin_bottom = 58.0
 alignment = 1
 
@@ -256,7 +256,7 @@ margin_right = 225.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Sound"
+text = "CREDITS_SOUND"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer5/Sound"]
@@ -270,29 +270,29 @@ align = 1
 
 [node name="HSeparator2" type="HSeparator" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 594.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 598.0
 custom_styles/separator = SubResource( 6 )
 
 [node name="Audio" type="Label" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 694.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 730.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 2 )
-text = "Audio"
+text = "CREDITS_AUDIO"
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 826.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 884.0
 custom_constants/separation = 240
 alignment = 1
 
 [node name="Ping" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer2"]
-margin_left = 157.0
-margin_right = 367.0
+margin_left = 142.0
+margin_right = 352.0
 margin_bottom = 58.0
 grow_horizontal = 2
 alignment = 1
@@ -302,7 +302,7 @@ margin_right = 210.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Ping"
+text = "CREDITS_PING"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer2/Ping"]
@@ -313,22 +313,22 @@ custom_fonts/font = SubResource( 3 )
 text = "NoiseCollector"
 
 [node name="Impact" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer2"]
-margin_left = 607.0
-margin_right = 742.0
+margin_left = 592.0
+margin_right = 802.0
 margin_bottom = 58.0
 alignment = 1
 
 [node name="Asset" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer2/Impact"]
-margin_right = 135.0
+margin_right = 210.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Impact"
+text = "CREDITS_IMPACT"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer2/Impact"]
 margin_top = 31.0
-margin_right = 135.0
+margin_right = 210.0
 margin_bottom = 58.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
@@ -337,14 +337,14 @@ align = 1
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 980.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 1038.0
 custom_constants/separation = 240
 alignment = 1
 
 [node name="Stun" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer6"]
-margin_left = 180.0
-margin_right = 360.0
+margin_left = 172.0
+margin_right = 352.0
 margin_bottom = 58.0
 grow_horizontal = 2
 alignment = 1
@@ -354,7 +354,7 @@ margin_right = 180.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Stun"
+text = "CREDITS_STUN"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer6/Stun"]
@@ -365,22 +365,22 @@ custom_fonts/font = SubResource( 3 )
 text = "AnthonyChan0"
 
 [node name="Mine" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer6"]
-margin_left = 600.0
-margin_right = 720.0
+margin_left = 592.0
+margin_right = 772.0
 margin_bottom = 58.0
 alignment = 1
 
 [node name="Asset" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer6/Mine"]
-margin_right = 120.0
+margin_right = 180.0
 margin_bottom = 27.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
-text = "Mine"
+text = "CREDITS_MINE"
 align = 1
 
 [node name="Creator" type="Label" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer6/Mine"]
 margin_top = 31.0
-margin_right = 120.0
+margin_right = 180.0
 margin_bottom = 58.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
@@ -389,29 +389,29 @@ align = 1
 
 [node name="HSeparator3" type="HSeparator" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 1134.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 1138.0
 custom_styles/separator = SubResource( 6 )
 
 [node name="Music" type="Label" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 1234.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 1270.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 2 )
-text = "Music"
+text = "CREDITS_MUSIC"
 align = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 1366.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 1424.0
-custom_constants/separation = 240
+custom_constants/separation = 159
 alignment = 1
 
 [node name="SpaceDrone" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer3"]
-margin_left = 22.0
-margin_right = 337.0
+margin_left = 85.0
+margin_right = 400.0
 margin_bottom = 58.0
 grow_horizontal = 2
 alignment = 1
@@ -430,10 +430,11 @@ margin_right = 315.0
 margin_bottom = 58.0
 custom_fonts/font = SubResource( 3 )
 text = "ZakharValaha"
+align = 1
 
 [node name="Void" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer3"]
-margin_left = 577.0
-margin_right = 877.0
+margin_left = 559.0
+margin_right = 859.0
 margin_bottom = 58.0
 grow_horizontal = 2
 alignment = 1
@@ -452,17 +453,18 @@ margin_right = 300.0
 margin_bottom = 58.0
 custom_fonts/font = SubResource( 3 )
 text = "Dream-Protocol"
+align = 1
 
 [node name="HBoxContainer7" type="HBoxContainer" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 1520.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 1578.0
-custom_constants/separation = 240
+custom_constants/separation = 232
 alignment = 1
 
 [node name="Mystique" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer7"]
-margin_left = 97.0
-margin_right = 292.0
+margin_left = 124.0
+margin_right = 319.0
 margin_bottom = 58.0
 grow_horizontal = 2
 alignment = 1
@@ -483,8 +485,8 @@ custom_fonts/font = SubResource( 3 )
 text = "Adi Goldstein"
 
 [node name="Caves" type="VBoxContainer" parent="ScrollContainer/ScrollContents/Credits/HBoxContainer7"]
-margin_left = 532.0
-margin_right = 802.0
+margin_left = 551.0
+margin_right = 821.0
 margin_bottom = 58.0
 grow_horizontal = 2
 alignment = 1
@@ -506,17 +508,17 @@ text = "GuilhermeBernardes"
 
 [node name="HSeparator4" type="HSeparator" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 1674.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 1678.0
 custom_styles/separator = SubResource( 6 )
 
 [node name="Godot" type="Label" parent="ScrollContainer/ScrollContents/Credits"]
 margin_top = 1774.0
-margin_right = 900.0
+margin_right = 945.0
 margin_bottom = 1810.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 2 )
-text = "Made with Godot"
+text = "CREDITS_GODOT"
 align = 1
 
 [node name="TitleEnd" type="Label" parent="ScrollContainer/ScrollContents"]
@@ -528,7 +530,7 @@ margin_right = 70.0
 margin_bottom = 19.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 1 )
-text = "Silent Running"
+text = "TITLE"
 
 [node name="Author" type="Label" parent="ScrollContainer/ScrollContents"]
 anchor_left = 0.5
@@ -539,7 +541,7 @@ margin_right = 65.0
 margin_bottom = 19.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 4 )
-text = "by Huw Taylor"
+text = "BY_AUTHOR"
 
 [node name="Website" type="LinkButton" parent="ScrollContainer/ScrollContents"]
 anchor_left = 0.5

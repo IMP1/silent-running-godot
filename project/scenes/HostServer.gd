@@ -11,18 +11,17 @@ func _ready() -> void:
 	$UserName/Label.connect("text_entered", self, "_on_username_changed")
 
 func _on_username_changed(new_username):
-	player_list.get_child(0).text = new_username + " (You)"
+	player_list.get_child(0).text = new_username + " " + tr("MP_YOU")
 	for id in clients.keys():
 		lobby.rpc_id(id, "handshake", $UserName/Label.text)
 
-func recieved_handshake(id, data):
-	print(id, ": ", data)
+func recieved_handshake(id, player_name):
 	var client_label = clients[id]
-	client_label.text = data
+	client_label.text = player_name
 
 func _player_connected(id: int) -> void:
 	var client_label = Label.new()
-	client_label.text = "Player " + str(id)
+	client_label.text = tr("MP_PLAYER_N") % id
 	var font = DynamicFont.new()
 	font.font_data = load("res://fonts/CutiveMono-Regular.ttf")
 	client_label.set("custom_fonts/font", font)

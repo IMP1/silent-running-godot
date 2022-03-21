@@ -94,13 +94,13 @@ __meta__ = {
 margin_top = 272.0
 margin_right = 120.0
 margin_bottom = 292.0
-text = "Resume"
+text = "RESUME"
 
 [node name="Quit" type="Button" parent="CanvasLayer/Menu/Buttons"]
 margin_top = 308.0
 margin_right = 120.0
 margin_bottom = 328.0
-text = "Quit"
+text = "QUIT"
 
 [node name="Controls" type="Control" parent="CanvasLayer/Menu"]
 anchor_right = 1.0
@@ -124,7 +124,8 @@ margin_left = -10.0
 margin_top = -40.0
 margin_right = 11.0
 margin_bottom = -26.0
-text = "[W]"
+grow_horizontal = 2
+text = "CONTROL_HINT_MOVE_UP"
 align = 1
 valign = 2
 __meta__ = {
@@ -136,7 +137,8 @@ margin_left = -6.0
 margin_top = 34.0
 margin_right = 9.0
 margin_bottom = 48.0
-text = "[S]"
+grow_horizontal = 2
+text = "CONTROL_HINT_MOVE_DOWN"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -149,7 +151,8 @@ margin_left = -65.0
 margin_top = 2.0
 margin_right = -48.0
 margin_bottom = 16.0
-text = "[A]"
+grow_horizontal = 2
+text = "CONTROL_HINT_MOVE_LEFT"
 align = 2
 valign = 1
 __meta__ = {
@@ -161,7 +164,8 @@ margin_left = 43.0
 margin_top = 4.0
 margin_right = 61.0
 margin_bottom = 18.0
-text = "[D]"
+grow_horizontal = 2
+text = "CONTROL_HINT_MOVE_RIGHT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -171,29 +175,26 @@ __meta__ = {
 margin_top = 4.0
 margin_right = 177.0
 margin_bottom = 18.0
-text = "[SHIFT]: Brake"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "CONTROL_HINT_BRAKE"
 
 [node name="Ping" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_top = 22.0
 margin_right = 177.0
 margin_bottom = 36.0
-text = "[LMB]: Fire Ping"
+text = "CONTROL_HINT_PING"
 
 [node name="SilentRunning" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_top = 40.0
 margin_right = 177.0
 margin_bottom = 54.0
-text = "[TAB]: Toggle Silent Running"
+text = "CONTROL_HINT_SILENCE"
 
 [node name="Torpedo" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_left = 37.0
 margin_top = 536.0
 margin_right = 84.0
 margin_bottom = 550.0
-text = "[SPACE]"
+text = "CONTROL_HINT_TORPEDO"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -203,14 +204,16 @@ margin_left = 505.0
 margin_top = 508.0
 margin_right = 520.0
 margin_bottom = 522.0
-text = "[E]"
+grow_horizontal = 2
+text = "CONTROL_HINT_MINE"
 
 [node name="MineNext" type="Label" parent="CanvasLayer/Menu/Controls"]
 margin_left = 598.0
 margin_top = 512.0
 margin_right = 614.0
 margin_bottom = 94.0
-text = "[2]"
+grow_horizontal = 2
+text = "CONTROL_HINT_MINE_NEXT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -220,7 +223,8 @@ margin_left = 410.0
 margin_top = 512.0
 margin_right = 426.0
 margin_bottom = 94.0
-text = "[1]"
+grow_horizontal = 2
+text = "CONTROL_HINT_MINE_PREV"
 
 [node name="Settings" type="VBoxContainer" parent="CanvasLayer/Menu"]
 anchor_left = 1.0
@@ -234,65 +238,65 @@ __meta__ = {
 }
 
 [node name="MasterVolume" type="HBoxContainer" parent="CanvasLayer/Menu/Settings"]
-margin_right = 221.0
+margin_right = 235.0
 margin_bottom = 16.0
 grow_horizontal = 2
 alignment = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Menu/Settings/MasterVolume"]
 margin_top = 1.0
-margin_right = 97.0
+margin_right = 111.0
 margin_bottom = 15.0
-text = "Master Volume"
+text = "MASTER_VOLUME"
 align = 2
 
 [node name="Slider" type="HSlider" parent="CanvasLayer/Menu/Settings/MasterVolume"]
-margin_left = 101.0
-margin_right = 221.0
+margin_left = 115.0
+margin_right = 235.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 120, 0 )
 value = 100.0
 
 [node name="SoundVolume" type="HBoxContainer" parent="CanvasLayer/Menu/Settings"]
 margin_top = 20.0
-margin_right = 221.0
+margin_right = 235.0
 margin_bottom = 36.0
 grow_horizontal = 2
 alignment = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Menu/Settings/SoundVolume"]
-margin_left = 12.0
+margin_left = 2.0
 margin_top = 1.0
-margin_right = 97.0
+margin_right = 111.0
 margin_bottom = 15.0
-text = "Sound Effects"
+text = "SOUND_VOLUME"
 align = 2
 
 [node name="Slider" type="HSlider" parent="CanvasLayer/Menu/Settings/SoundVolume"]
-margin_left = 101.0
-margin_right = 221.0
+margin_left = 115.0
+margin_right = 235.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 120, 0 )
 value = 100.0
 
 [node name="MusicVolume" type="HBoxContainer" parent="CanvasLayer/Menu/Settings"]
 margin_top = 40.0
-margin_right = 221.0
+margin_right = 235.0
 margin_bottom = 56.0
 grow_horizontal = 2
 alignment = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Menu/Settings/MusicVolume"]
-margin_left = 59.0
+margin_left = 8.0
 margin_top = 1.0
-margin_right = 97.0
+margin_right = 111.0
 margin_bottom = 15.0
-text = "Music"
+text = "MUSIC_VOLUME"
 align = 2
 
 [node name="Slider" type="HSlider" parent="CanvasLayer/Menu/Settings/MusicVolume"]
-margin_left = 101.0
-margin_right = 221.0
+margin_left = 115.0
+margin_right = 235.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 120, 0 )
 value = 100.0
