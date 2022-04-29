@@ -71,6 +71,7 @@ func setup(game_settings):
 			camera.current = true
 			Screenshake.camera = camera
 			player_camera = camera
+			print(player_object.position) # TODO: Remove debugging print
 		else:
 			player_object.get_node("HUD/GUI").visible = false
 			player_object.get_node("Sprite").modulate = player_object.remote_stealth
@@ -157,6 +158,10 @@ remotesync func player_died(player_id):
 func hide_map():
 	$Background/ColorRect.color = Constants.COLOUR_BACKGROUND
 	for body in level.get_node("Rocks").get_children():
+		for polygon in body.get_children():
+			if polygon is Polygon2D:
+				polygon.color = Constants.COLOUR_BACKGROUND
+	for body in level.get_node("Flora").get_children():
 		for polygon in body.get_children():
 			if polygon is Polygon2D:
 				polygon.color = Constants.COLOUR_BACKGROUND
