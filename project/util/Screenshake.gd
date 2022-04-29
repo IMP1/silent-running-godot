@@ -2,6 +2,7 @@ extends Node
 
 var rumble_strength: Vector2 = Vector2.ZERO
 var shakes: Dictionary = {}
+var global_shake_strength_modifier: float = 1.0
 
 onready var camera: Camera2D
 
@@ -32,8 +33,10 @@ func _remove_screen_shake(node: Node) -> void:
 	shakes.erase(node)
 
 func _process(delta):
-	var total_shake = rumble_strength
+	if global_shake_strength_modifier == 0.0:
+		return
+	var total_shake = rumble_strength * global_shake_strength_modifier
 	for shake_node in shakes:
-		total_shake += shakes[shake_node]
+		total_shake += shakes[shake_node] * global_shake_strength_modifier
 	if camera:
 		camera.offset = randf() * total_shake * 2 - total_shake

@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "Torpedo",
 "language": "GDScript",
 "path": "res://objects/Torpedo.gd"
+}, {
+"base": "Resource",
+"class": "UserSettings",
+"language": "GDScript",
+"path": "res://util/Settings.gd"
 } ]
 _global_script_class_icons={
 "DecoyMine": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "Mine": "",
 "Player": "",
 "StunMine": "",
-"Torpedo": ""
+"Torpedo": "",
+"UserSettings": ""
 }
 
 [application]

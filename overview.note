@@ -26,9 +26,11 @@ Godot multiplayer game
   - [X] Release a build
   - [X] Internationalise the game and localise it for English (UK)
   - [X] Win + Loss condition 
-  - [ ] Settings
+  - [X] Settings
       - [X] Volume Controls
-      - [ ] Language
+      - [X] Screenshake strength
+      - [X] Language
+      - [X] Saving and Loading
   - [ ] Add a check in the sound shader to make sure that 'solid' is not ping_colour (` && background != ping_colour`)
   - [ ] Sounds being visually fainter the further away they are
   - [ ] A chat function? For kills and disconnections, and also for chatting.
